@@ -541,7 +541,6 @@ treeJSON = d3.json("https://ganapathyrajalingam.github.io/ftteamstructure/team.j
 
     // Define the root
     root = treeData;
-    root.x0 = root.x;
     root.x0 = viewerHeight / 2;
     root.y0 = 0;
 
