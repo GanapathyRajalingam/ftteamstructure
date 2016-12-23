@@ -25,9 +25,17 @@ OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 
+if (typeof ($.browser) == "undefined") {
+    $.browser = {};
+}
+if (typeof ($.browser.webkit) == "undefined") {
+    $.browser.webkit = false;
+}
 
 // Get JSON data
 treeJSON = d3.json("https://ganapathyrajalingam.github.io/ftteamstructure/team.json", function(error, treeData) {
+    
+    console.log(" read team.json ")
 
     // Calculate total nodes, max label length
     var totalNodes = 0;
