@@ -12,18 +12,18 @@
 		[
         {
             "name": "Ganapathy Rajalingam",
-			"type" : "green",
+			"type" : "lightgreen",
             "children": 
 			[
             {
                 "name": "Vishwanathan K",
                 "size": 3938,
-				"type" : "blue",
+				"type" : "lightblue",
 				"children" :
 				[
 				{
 					"name": "HNB",
-					"type" : "blue",
+					"type" : "lightblue",
 					"children" :
 					[
 					{
@@ -42,7 +42,7 @@
 				},
 				{
 					"name" : "Sampath",
-					"type" : "blue",
+					"type" : "lightblue",
 					"children" :
 					[
 					{
