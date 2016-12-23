@@ -12,7 +12,7 @@
 		[
         {
             "name": "Ganapathy Rajalingam",
-			"type" : "lightsteelblue",
+			"type" : "green",
             "children": 
 			[
             {
@@ -86,6 +86,7 @@
 				},
 				{
 					"name" : "UBI - Phase I",
+					"type" : "purple",
 					"children" :
 					[
 					{

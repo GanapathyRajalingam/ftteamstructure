@@ -606,7 +606,7 @@ function makeChart(treeData) {
                    // Enter any new links at the parent's previous position.
                    link.enter().insert("path", "g")
                        .attr("class", "link")
-                       .style("stroke", function(d) { return d.target.level; })
+                       .style("stroke", function(d) { return d.target.type; })
                        .attr("d", function(d) {
                            var o = {
                                x: source.x0,
