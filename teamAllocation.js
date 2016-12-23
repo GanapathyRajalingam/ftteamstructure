@@ -516,6 +516,7 @@ function makeChart(treeData) {
                    nodeEnter.append("circle")
                        .attr('class', 'nodeCircle')
                        .attr("r", 0)
+					   .style("stroke", function(d) { return d.type; })
                        .style("fill", function(d) {
                          console.log("node circle");
                          console.log(d);
