@@ -1,4 +1,6 @@
 {
+  "teamListDetails" :
+  [{
     "name": "FT",
     "children": 
 	[
@@ -135,4 +137,5 @@
             "size": 1041
     }
 	]
+}]
 }
