@@ -2,42 +2,61 @@
   "teamListDetails" :
   [{
     "name": "FT",
+	"type" : "black",
     "children": 
 	[
 	{
         "name": "Beta Support",
+		"type" : "lightsteelblue",
         "children": 
 		[
         {
             "name": "Ganapathy Rajalingam",
+			"type" : "lightsteelblue",
             "children": 
 			[
             {
                 "name": "Vishwanathan K",
                 "size": 3938,
+				"type" : "blue",
 				"children" :
 				[
 				{
 					"name": "HNB",
+					"type" : "blue",
 					"children" :
 					[
 					{
-						"name" : "FIFO - Backdated cases handling"
+						"name" : "DELIVERRED - FIFO - Enablement in SecPos"
 					},
 					{
-						"name" : "FIFO - Short Sale cases handling"
+						"name" : "OPEN - FIFO - Backdated cases handling"
 					},
 					{
-						"name" : "SecPos - UnAmortised prem issue with Trade Date realisation"
+						"name" : "OPEN - FIFO - Short Sale cases handling"
+					},
+					{
+						"name" : "OPEN - SecPos - UnAmortised prem issue with Trade Date realisation"
 					}
 					]
 				},
 				{
 					"name" : "Sampath",
+					"type" : "blue",
 					"children" :
 					[
 					{
-						"name" : "SecPos - MTM Price on Month End"
+						"name" : "OPEN - SecPos - MTM Price on Month End"
+					}
+					]
+				},
+				{
+					"name" : "AXIS",
+					"type" : "blue",
+					"children" :
+					[
+					{
+						"name" : "ONGOING - Dealer Pad - New requirements during UAT"
 					}
 					]
 				}
@@ -45,11 +64,13 @@
             }, 
             {
                 "name": "Krishna Kishore",
+				"type" : "purple",
                 "size": 3812,
 				"children" :
 				[
 				{
 					"name": "HNB",
+					"type" : "purple",
 					"children" :
 					[
 					{
@@ -77,6 +98,7 @@
 				},
 				{
 					"name" : "UBI - Phase II",
+					"type" : "purple",
 					"children" :
 					[
 					{
@@ -88,11 +110,13 @@
             }, 
 			{
                 "name": "Manjunath Sharanappa",
+				"type" : "orange",
                 "size": 6714,
 				"children" :
 				[
 				{
 					"name": "HNB",
+					"type" : "orange",
 					"children" :
 					[
 					{
@@ -102,18 +126,25 @@
 				},
 				{
 					"name" : "UBI - Phase II",
+					"type" : "orange",
 					"children" :
 					[
 					{
 						"name" : "OPEN - Capital Charge - Consolidation"
 					}
 					]
+				},
+				{
+					"name" : "UBI - Phase I",
+					"type" : "orange",
+					"children" :
+					[
+					{
+						"name" : "ONGOING - UAT Issues"
+					}
+					]
 				}
 				]
-            }, 
-			{
-                "name": "Lavanya Selvaraj",
-                "size": 743
             }
 			]
         }, 
