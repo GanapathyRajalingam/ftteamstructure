@@ -88,7 +88,7 @@
             }, 
 			{
                 "name": "Manjunath Sharanappa",
-                "size": 6714
+                "size": 6714,
 				"children" :
 				[
 				{
@@ -136,10 +136,6 @@
 			{
                 "name": "Lavanya Acharya",
                 "size": 5914
-            }, 
-			{
-                "name": "SpanningTree",
-                "size": 3416
             }
 			]
         }, 
