@@ -1,24 +1,138 @@
 {
-  "name": "Top Level",
-    "parent": "null",
-    "children": [
-      {
-        "name": "Level 2: A",
-        "parent": "Top Level",
-        "children": [
-          {
-            "name": "Son of A",
-            "parent": "Level 2: A"
-          },
-          {
-            "name": "Daughter of A",
-            "parent": "Level 2: A"
-          }
-        ]
-      },
-      {
-        "name": "Level 2: B",
-        "parent": "Top Level"
-      }
-    ]
+    "name": "FT",
+    "children": 
+	[
+	{
+        "name": "Beta Support",
+        "children": 
+		[
+        {
+            "name": "Ganapathy Rajalingam",
+            "children": 
+			[
+            {
+                "name": "Vishwanathan K",
+                "size": 3938
+            }, 
+            {
+                "name": "Krishna Kishore",
+                "size": 3812
+            }, 
+			{
+                "name": "Manjunath Sharanappa",
+                "size": 6714
+            }, 
+			{
+                "name": "Lavanya Selvaraj",
+                "size": 743
+            }
+			]
+        }, 
+		{
+            "name": "Swapnil Kadam",
+            "children": 
+			[
+            {
+                "name": "Nikhil Bhat",
+                "size": 3534
+            }, 
+			{
+                "name": "Chetan Naik",
+                "size": 5731
+            }, 
+			{
+                "name": "Dhinesh Ramakrishnan",
+                "size": 7840
+            }, 
+			{
+                "name": "Lavanya Acharya",
+                "size": 5914
+            }, 
+			{
+                "name": "SpanningTree",
+                "size": 3416
+            }
+			]
+        }, 
+		{
+            "name": "Vishal Kashyap",
+            "children": 
+			[
+            {
+                "name": "Harmanpreet Singh",
+                "size": 7074
+            }
+			]
+        }
+		]
+    }, 
+	{
+        "name": "Development",
+        "children": 
+		[
+			{
+            "name": "Ravi Shankar Prasad",
+            "children": 
+			[
+            {
+                "name": "Manjula Gunasegaran",
+                "size": 3938
+            }, 
+            {
+                "name": "Rashmi Gurung",
+                "size": 3812
+            }, 
+			{
+                "name": "Kunal Sinha",
+                "size": 6714
+            }, 
+			{
+                "name": "Tester",
+                "size": 743
+            }
+			]
+			}, 
+			{
+            "name": "Sanjesh Kuniyil",
+            "children": 
+			[
+            {
+                "name": "Arun Kumar",
+                "size": 3534
+            }, 
+			{
+                "name": "Rajaram Manoharan",
+                "size": 5731
+            }, 
+			{
+                "name": "Manita Sahu",
+                "size": 7840
+            }, 
+			{
+                "name": "Rahul Rajusa",
+                "size": 5914
+            }, 
+			{
+                "name": "Tester",
+                "size": 3416
+            }
+			]
+			}, 
+			{
+            "name": "Abhinav Jauhari",
+            "children": 
+			[
+            {
+                "name": "Saurabh Gupta",
+                "size": 7074
+            }
+			]
+			}
+		]
+    }, 
+	{
+            "name": "ISchedulable",
+            "size": 1041
+    }
+	]
 }
