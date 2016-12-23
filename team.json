@@ -64,13 +64,13 @@
             }, 
             {
                 "name": "Krishna Kishore",
-				"type" : "olive",
+				"type" : "#EE9A4D",
                 "size": 3812,
 				"children" :
 				[
 				{
 					"name": "HNB",
-					"type" : "olive",
+					"type" : "#EE9A4D",
 					"children" :
 					[
 					{
@@ -86,7 +86,7 @@
 				},
 				{
 					"name" : "UBI - Phase I",
-					"type" : "olive",
+					"type" : "#EE9A4D",
 					"children" :
 					[
 					{
@@ -99,7 +99,7 @@
 				},
 				{
 					"name" : "UBI - Phase II",
-					"type" : "olive",
+					"type" : "#EE9A4D",
 					"children" :
 					[
 					{
@@ -111,13 +111,13 @@
             }, 
 			{
                 "name": "Manjunath Sharanappa",
-				"type" : "lightbrown",
+				"type" : "lightgreen",
                 "size": 6714,
 				"children" :
 				[
 				{
 					"name": "HNB",
-					"type" : "lightbrown",
+					"type" : "lightgreen",
 					"children" :
 					[
 					{
@@ -127,7 +127,7 @@
 				},
 				{
 					"name" : "UBI - Phase II",
-					"type" : "lightbrown",
+					"type" : "lightgreen",
 					"children" :
 					[
 					{
@@ -137,7 +137,7 @@
 				},
 				{
 					"name" : "UBI - Phase I",
-					"type" : "lightbrown",
+					"type" : "lightgreen",
 					"children" :
 					[
 					{
