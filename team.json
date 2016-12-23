@@ -22,10 +22,10 @@
 					"children" :
 					[
 					{
-						"name" : "FIFO - Backdated cases handling",
+						"name" : "FIFO - Backdated cases handling"
 					},
 					{
-						"name" : "FIFO - Short Sale cases handling",
+						"name" : "FIFO - Short Sale cases handling"
 					},
 					{
 						"name" : "SecPos - UnAmortised prem issue with Trade Date realisation"
