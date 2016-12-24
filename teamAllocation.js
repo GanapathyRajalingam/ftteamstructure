@@ -516,6 +516,9 @@ function makeChart(treeData) {
                    nodeEnter.append("circle")
                        .attr('class', 'nodeCircle')
                        .attr("r", 0)
+					   .attr("d", d3.svg.symbol()
+								.size(200)
+								.type(function(d) {  return d.shape;}))
 					   .style("stroke", function(d) { return d.type; })
                        .style("fill", function(d) {
                          console.log("node circle");

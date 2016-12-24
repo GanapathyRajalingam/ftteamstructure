@@ -3,27 +3,32 @@
   [{
     "name": "FT",
 	"type" : "black",
+	"shape" : "circle",
     "children": 
 	[
 	{
         "name": "Beta Support",
 		"type" : "lightsteelblue",
+		"shape" : "square",
         "children": 
 		[
         {
             "name": "Ganapathy Rajalingam",
 			"type" : "lightgreen",
+			"shape" : "triangle-up",
             "children": 
 			[
             {
                 "name": "Vishwanathan K",
                 "size": 3938,
 				"type" : "lightblue",
+				"shape" : "diamond",
 				"children" :
 				[
 				{
 					"name": "HNB",
 					"type" : "lightblue",
+					"shape" : "triangle-down",
 					"children" :
 					[
 					{
@@ -43,6 +48,7 @@
 				{
 					"name" : "Sampath",
 					"type" : "lightblue",
+					"shape" : "triangle-down",
 					"children" :
 					[
 					{
@@ -53,6 +59,7 @@
 				{
 					"name" : "AXIS",
 					"type" : "lightblue",
+					"shape" : "triangle-down",
 					"children" :
 					[
 					{
@@ -66,11 +73,13 @@
                 "name": "Krishna Kishore",
 				"type" : "#EE9A4D",
                 "size": 3812,
+				"shape" : "diamond",
 				"children" :
 				[
 				{
 					"name": "HNB",
 					"type" : "#EE9A4D",
+					"shape" : "triangle-down",
 					"children" :
 					[
 					{
@@ -87,6 +96,7 @@
 				{
 					"name" : "UBI - Phase I",
 					"type" : "#EE9A4D",
+					"shape" : "triangle-down",
 					"children" :
 					[
 					{
@@ -100,6 +110,7 @@
 				{
 					"name" : "UBI - Phase II",
 					"type" : "#EE9A4D",
+					"shape" : "triangle-down",
 					"children" :
 					[
 					{
@@ -113,11 +124,13 @@
                 "name": "Manjunath Sharanappa",
 				"type" : "lightgreen",
                 "size": 6714,
+				"shape" : "diamond",
 				"children" :
 				[
 				{
 					"name": "HNB",
 					"type" : "lightgreen",
+					"shape" : "triangle-down",
 					"children" :
 					[
 					{
@@ -128,6 +141,7 @@
 				{
 					"name" : "UBI - Phase II",
 					"type" : "lightgreen",
+					"shape" : "triangle-down",
 					"children" :
 					[
 					{
@@ -138,6 +152,7 @@
 				{
 					"name" : "UBI - Phase I",
 					"type" : "lightgreen",
+					"shape" : "triangle-down",
 					"children" :
 					[
 					{
