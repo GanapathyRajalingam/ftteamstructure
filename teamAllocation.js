@@ -1,23 +1,8 @@
 
-
-
-// load the external data
-d3.json("https://ganapathyrajalingam.github.io/ftteamstructure/team.json", function(error, treeData) {
-  root = treeData;
-  console.log( root.teamListDetails[0]);
-  console.log(error);
-  makeChart(root.teamListDetails);
-});
-
-
-function makeChart(treeData) {
-    
-    console.log(" read team.json ")
-
-        console.log('mycollapsibletree makechart called ');
-
-                      // Calculate total nodes, max label length
-               var totalNodes = 0;
+var root;
+var treeDatabkup;
+var tree;
+              var totalNodes = 0;
                var maxLabelLength = 0;
                // variables for drag/drop
                var selectedNode = null;
@@ -28,148 +13,144 @@ function makeChart(treeData) {
                // Misc. variables
                var i = 0;
                var duration = 750;
-               //var treeData = this.data;
-				console.log(treeData);
-
-			   //treeData = JSON.parse(treeData);
-			   
-               var root = treeData[0];
-				console.log(root);
-               var margin = {top: 5, right: 20, bottom: 5, left: 20};
-            //       viewerWidth = 960 - margin.right - margin.left,
-            //       viewerHeight = 800 - margin.top - margin.bottom;
-               // size of the diagram
               var viewerWidth =  $(document).width();
                var viewerHeight = $(document).height();
-
-               var tree = d3.layout.tree()
+			   
+			                  tree = d3.layout.tree()
                    .size([viewerHeight, viewerWidth]);
 
                // define a d3 diagonal projection for use by the node paths later on.
                var diagonal = d3.svg.diagonal()
                    .projection(function(d) {
-                      console.log( "diagonal fn called ");
-                      console.log(d.y);
-                      console.log(d.x);
                        return [d.y, d.x];
                    });
 
-
-          /*
-                   var svg = d3.select("#tree-container").append("svg")
-                       .attr("width", viewerWidth )
-                       .attr("height", viewerHeight )
-                       .attr("class", "overlay")
-                     .append("g")
-                       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-*/
-               // A recursive helper function for performing some setup by walking through all nodes
-
-               function visit(parent, visitFn, childrenFn) {
-                 console.log("visit master fn called");
-                 console.log(parent);
-                   if (!parent) return;
-
-                   var vfntest = visitFn(parent);
-                   if ( vfntest) {
-                     console.log(" visit fn called ");
-                     console.log(totalNodes);
-                     if ( totalNodes == 1 ){
-                       console.log("totalnodes = 0");
-                     console.log( vfntest[0].name); }
-                     else {
-                       console.log( vfntest.name);
-                     }
-                   }
-
-                   var children = childrenFn(parent);
-                   if (children) {
-                     if ( totalNodes ==1 ) {
-                       var count = children.length;
-                       console.log(count);
-                       for (var i = 0; i < count; i++)
-                       {
-                          console.log(" inside for loop");
-                           visit(children[i], visitFn, childrenFn);
-                       }
-                     } else {
-                       var count = children.length;
-                       console.log(count);
-                       for (var i = 0; i < count; i++)
-                       {
-                          console.log(" inside for loop");
-                           visit(children[i], visitFn, childrenFn);
-                       }
-                     }
-                   }
-               }
-
-               // Call visit function to establish maxLabelLength
-               visit(treeData, function(d) {
-                  console.log("visit fn to chk maxLabelLength called");
-                  console.log(totalNodes);
-                  if ( totalNodes == 0 ) {
-                    console.log("totalnodes = 0");
-                  console.log(d.length);
-                   totalNodes++;
-                   maxLabelLength = Math.max(d.length, maxLabelLength);
-                   return d;
-                 } else
-                 {
-                    if ( d.children )
-                    {
-                   console.log(d.children.length);
-                    totalNodes++;
-                    maxLabelLength = Math.max(d.children.length, maxLabelLength);
-                    return d;
-                  }
-                  else {
-                    console.log("leaf node");
-                     totalNodes++;
-                     maxLabelLength = 1;
-                     return d;
-                  }
-                 }
-                  //maxLabelLength = 4;
-                  return d;
-               },
-               function(d) {
-                 console.log("children fn called ");
-                 console.log(d);
-                 if ( totalNodes == 1 ) {
-                   return d[0].children && d[0].children.length > 0 ? d[0].children : null;
-                 } else {
-
-                   return d.children && d.children.length > 0 ? d.children : null;
-
-                 }
-               });
-
-
-
+				   
                function sortTree() {
-                 console.log("sort tree called");
+                // console.log("sort tree called");
 
                  tree.sort(function(a, b) {
-                   console.log(b.name.toLowerCase());
-                   console.log(a.name.toLowerCase());
+                //   console.log(b.name.toLowerCase());
+                //   console.log(a.name.toLowerCase());
                    return b.name.toLowerCase() < a.name.toLowerCase() ? 1 : -1;
                  });
                }
-               // Sort the tree initially incase the JSON isn't in a sorted order.
-               sortTree();
-
-               function zoom() {
-                 console.log("zoom fn called ");
+			   
+			function zoom() {
+                // console.log("zoom fn called ");
                  svgGroup.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+               }
+			   
+               // define the zoomListener which calls the zoom function on the "zoom" event constrained within the scaleExtents
+               var zoomListener = d3.behavior.zoom().scaleExtent([0.1, 1.2]).on("zoom", zoom);
+			   
+			                  // define the baseSvg, attaching a class for styling and the zoomListener
+               var baseSvg = d3.select("#tree-container").append("svg")
+               .attr("width", viewerWidth)
+               .attr("height", viewerHeight)
+               .attr("class", "overlay")
+               .call(zoomListener);
+
+               // Append a group which holds all nodes and which the zoom Listener can act upon.
+               var svgGroup = baseSvg.append("g");
+
+loadJsonData();
+
+
+               // Helper functions for collapsing and expanding nodes.
+
+               function collapse(d) {
+                 console.log("collapse fn called ");
+                   if (d.children) {
+                       d._children = d.children;
+                       d._children.forEach(collapse);
+                       d.children = null;
+                //       console.log(d);
+                   }
                }
 
 
-               // define the zoomListener which calls the zoom function on the "zoom" event constrained within the scaleExtents
-               var zoomListener = d3.behavior.zoom().scaleExtent([0.1, 1.2]).on("zoom", zoom);
+               function expand(d) {
+                 console.log("expand fn called");
+                   if (d._children) {
+                       d.children = d._children;
+                       d.children.forEach(expand);
+                       d._children = null;
+                   }
+               }
 
 
-                              function pan(domNode, direction) {
+                              // Function to center node when clicked/dropped so node doesn't get lost when collapsing/moving with large amount of children.
+
+                              function centerNode(source) {
+                                console.log("CenterNode fn called ");
+                                console.log(viewerWidth);
+                                console.log(viewerHeight);
+                                  scale = zoomListener.scale();
+                                  x = -source.y0;
+                                  y = -source.x0;
+                                  x = x * scale + viewerWidth / 2;
+                                  y = y * scale + viewerHeight / 2;
+                                  console.log(x);
+                                  console.log(y);
+                                  d3.select('g').transition()
+                                      .duration(duration)
+                                      .attr("transform", "translate(" + x + "," + y + ")scale(" + scale + ")");
+                                  zoomListener.scale(scale);
+                                  zoomListener.translate([x, y]);
+                              }
+
+
+               // Function to update the temporary connector indicating dragging affiliation
+               var updateTempConnector = function() {
+                 console.log("update Temp Connector called");
+                 console.log(root);
+                   var dataTemp = [];
+                   if (draggingNode !== null && selectedNode !== null) {
+                       // have to flip the source coordinates since we did this for the existing connectors on the original tree
+                       dataTemp = [{
+                           source: {
+                               x: selectedNode.y0,
+                               y: selectedNode.x0
+                           },
+                           target: {
+                               x: draggingNode.y0,
+                               y: draggingNode.x0
+                           }
+                       }];
+                   }
+                   var link = svgGroup.selectAll(".templink").data(dataTemp);
+
+                   link.enter().append("path")
+                       .attr("class", "templink")
+                       .attr("d", d3.svg.diagonal())
+                       .attr('pointer-events', 'none');
+
+                   link.attr("d", d3.svg.diagonal());
+                  console.log(link);
+                   link.exit().remove();
+               };
+
+               // Toggle children on click.
+               function toggleChildren(d) {
+                 if (d.children) {
+                   d._children = d.children;
+                   d.children = null;
+                 } else if (d._children) {
+                   d.children = d._children;
+                   d._children = null;
+                 }
+                 return d;
+               }
+
+               function click(d) {
+                 if (d3.event.defaultPrevented) return; // click suppressed
+                 d = toggleChildren(d);
+                 update(d);
+                 centerNode(d);
+               }
+			   
+                             function pan(domNode, direction) {
                                 console.log(" pan fn called");
                                   var speed = panSpeed;
                                   if (panTimer) {
@@ -207,6 +188,7 @@ function makeChart(treeData) {
                               };
 
 
+							  
                                              function initiateDrag(d, domNode) {
                                                console.log("initdrag called ");
                                                  draggingNode = d;
@@ -342,98 +324,6 @@ function makeChart(treeData) {
                                                  }
                                              }
 
-               // Helper functions for collapsing and expanding nodes.
-
-               function collapse(d) {
-                 console.log("collapse fn called ");
-                   if (d.children) {
-                       d._children = d.children;
-                       d._children.forEach(collapse);
-                       d.children = null;
-                       console.log(d);
-                   }
-               }
-
-
-               function expand(d) {
-                 console.log("expand fn called");
-                   if (d._children) {
-                       d.children = d._children;
-                       d.children.forEach(expand);
-                       d._children = null;
-                   }
-               }
-
-
-                              // Function to center node when clicked/dropped so node doesn't get lost when collapsing/moving with large amount of children.
-
-                              function centerNode(source) {
-                                console.log("CenterNode fn called ");
-                                console.log(viewerWidth);
-                                console.log(viewerHeight);
-                                  scale = zoomListener.scale();
-                                  x = -source.y0;
-                                  y = -source.x0;
-                                  x = x * scale + viewerWidth / 2;
-                                  y = y * scale + viewerHeight / 2;
-                                  console.log(x);
-                                  console.log(y);
-                                  d3.select('g').transition()
-                                      .duration(duration)
-                                      .attr("transform", "translate(" + x + "," + y + ")scale(" + scale + ")");
-                                  zoomListener.scale(scale);
-                                  zoomListener.translate([x, y]);
-                              }
-
-
-               // Function to update the temporary connector indicating dragging affiliation
-               var updateTempConnector = function() {
-                 console.log("update Temp Connector called");
-                 console.log(root);
-                   var dataTemp = [];
-                   if (draggingNode !== null && selectedNode !== null) {
-                       // have to flip the source coordinates since we did this for the existing connectors on the original tree
-                       dataTemp = [{
-                           source: {
-                               x: selectedNode.y0,
-                               y: selectedNode.x0
-                           },
-                           target: {
-                               x: draggingNode.y0,
-                               y: draggingNode.x0
-                           }
-                       }];
-                   }
-                   var link = svgGroup.selectAll(".templink").data(dataTemp);
-
-                   link.enter().append("path")
-                       .attr("class", "templink")
-                       .attr("d", d3.svg.diagonal())
-                       .attr('pointer-events', 'none');
-
-                   link.attr("d", d3.svg.diagonal());
-                  console.log(link);
-                   link.exit().remove();
-               };
-
-               // Toggle children on click.
-               function toggleChildren(d) {
-                 if (d.children) {
-                   d._children = d.children;
-                   d.children = null;
-                 } else if (d._children) {
-                   d.children = d._children;
-                   d._children = null;
-                 }
-                 return d;
-               }
-
-               function click(d) {
-                 if (d3.event.defaultPrevented) return; // click suppressed
-                 d = toggleChildren(d);
-                 update(d);
-                 centerNode(d);
-               }
 /*
                function click(d) {
                  if (d.children) {
@@ -496,7 +386,7 @@ function makeChart(treeData) {
                    });
 
                    // Update the nodes…
-                  console.log("about to call select all nodes ");
+                  //console.log("about to call select all nodes ");
                    node = svgGroup.selectAll("g.node")
                        .data(nodes, function(d) {
                          console.log("select all nodes");
@@ -513,8 +403,8 @@ function makeChart(treeData) {
                        })
                        .on('click', click);
 
-                   nodeEnter.append("circle")
-                       .attr('class', 'nodeCircle')
+                   nodeEnter.append("circle")  // change dis to path and handle the circle reference everywhere .. then diferent shapes will be enabled 
+                       .attr('class', 'nodeCircle')    // based on the d.shape and d3.svg.symbol 
                        .attr("r", 0)
 					   .attr("d", d3.svg.symbol()
 								.size(200)
@@ -522,6 +412,7 @@ function makeChart(treeData) {
 					   .style("stroke", function(d) { return d.type; })
                        .style("fill", function(d) {
                          console.log("node circle");
+						 //console.log(d.shape);
                          console.log(d);
                            return d._children ? "lightsteelblue" : "blue";
                        });
@@ -648,20 +539,136 @@ function makeChart(treeData) {
                    });
                }
 
+			
+
+function loadJsonData(){
+// load the external data
+d3.json("https://ganapathyrajalingam.github.io/ftteamstructure/team.json", function(error, treeData1) {
+  treeDatabkup = treeData1;
+  console.log( treeDatabkup.teamListDetails[0]);
+  console.log(error);
+  makeChart(treeDatabkup.teamListDetails[0]);
+});
+}
 
 
-               // define the baseSvg, attaching a class for styling and the zoomListener
-               var baseSvg = d3.select("#tree-container").append("svg")
-               .attr("width", viewerWidth)
-               .attr("height", viewerHeight)
-               .attr("class", "overlay")
-               .call(zoomListener);
+function makeChart(treeData) {
+    
+    console.log(" read team.json ")
 
-               // Append a group which holds all nodes and which the zoom Listener can act upon.
-               var svgGroup = baseSvg.append("g");
+        console.log('mycollapsibletree makechart called ');
+
+                      // Calculate total nodes, max label length
+
+               //var treeData = this.data;
+				console.log(treeData);
+
+			   //treeData = JSON.parse(treeData);
+				
+               root = treeData;
+				console.log(root);
+               var margin = {top: 5, right: 20, bottom: 5, left: 20};
+            //       viewerWidth = 960 - margin.right - margin.left,
+            //       viewerHeight = 800 - margin.top - margin.bottom;
+               // size of the diagram
+ 
+          /*
+                   var svg = d3.select("#tree-container").append("svg")
+                       .attr("width", viewerWidth )
+                       .attr("height", viewerHeight )
+                       .attr("class", "overlay")
+                     .append("g")
+                       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+*/
+               // A recursive helper function for performing some setup by walking through all nodes
+
+               function visit(parent, visitFn, childrenFn) {
+                 console.log("visit master fn called");
+                 console.log(parent);
+                   if (!parent) return;
+
+                   var vfntest = visitFn(parent);
+                   if ( vfntest) {
+                     console.log(" visit fn called ");
+                     console.log(totalNodes);
+                     if ( totalNodes == 1 ){
+                       console.log("totalnodes = 0");
+                     console.log( vfntest.name); }
+                     else {
+                       console.log( vfntest.name);
+                     }
+                   }
+
+                   var children = childrenFn(parent);
+                   if (children) {
+                     if ( totalNodes ==1 ) {
+                       var count = children.length;
+                       console.log(count);
+                       for (var i = 0; i < count; i++)
+                       {
+                          console.log(" inside for loop");
+                           visit(children[i], visitFn, childrenFn);
+                       }
+                     } else {
+                       var count = children.length;
+                       console.log(count);
+                       for (var i = 0; i < count; i++)
+                       {
+                          console.log(" inside for loop");
+                           visit(children[i], visitFn, childrenFn);
+                       }
+                     }
+                   }
+               }
+
+               // Call visit function to establish maxLabelLength
+               visit(treeData, function(d) {
+                  console.log("visit fn to chk maxLabelLength called");
+                  console.log(totalNodes);
+                  if ( totalNodes == 0 ) {
+                    console.log("totalnodes = 0");
+                  console.log(d.length);
+                   totalNodes++;
+                   maxLabelLength = Math.max(d.length, maxLabelLength);
+                   return d;
+                 } else
+                 {
+                    if ( d.children )
+                    {
+                   console.log(d.children.length);
+                    totalNodes++;
+                    maxLabelLength = Math.max(d.children.length, maxLabelLength);
+                    return d;
+                  }
+                  else {
+                    console.log("leaf node");
+                     totalNodes++;
+                     maxLabelLength = 1;
+                     return d;
+                  }
+                 }
+                  //maxLabelLength = 4;
+                  return d;
+               },
+               function(d) {
+                 console.log("children fn called ");
+                 console.log(d);
+                 if ( totalNodes == 1 ) {
+                   return d.children && d.children.length > 0 ? d.children : null;
+                 } else {
+
+                   return d.children && d.children.length > 0 ? d.children : null;
+
+                 }
+               });
+
+
+
+               // Sort the tree initially incase the JSON isn't in a sorted order.
+               sortTree();
 
                // Define the root
-               root = treeData[0];
+               root = treeData;
                root.x0 = viewerHeight / 2;
                root.y0 = 10;
 
@@ -671,3 +678,32 @@ function makeChart(treeData) {
 	
 	
 };
+
+function addNode(){
+	console.log( " AddNode called ");
+	var nodeVal = document.getElementById("nodeName").value;
+	console.log(nodeVal);
+	var parentNode = document.getElementById("parentNode").value;
+	console.log(parentNode);
+	console.log(tree);
+	
+	var currentNode = tree.nodes(parentNode);
+	console.log(currentNode);
+	var temp = d3.select(currentNode);
+	console.log(temp);
+		
+	  // Add a new datum to a random parent.
+  var newData = {name: nodeVal};
+  
+  root.children.push(newData);
+  updateTempConnector();
+  console.log("root");
+  console.log(root);
+  console.log("treeDatabkup");
+  console.log(treeDatabkup);
+  
+  //if (parent.children) parent.children.push(d); else parent.children = [d];
+  update(root);
+  //root.push(d);
+  
+}

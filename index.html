@@ -40,11 +40,71 @@
   .ghostCircle, .activeDrag .ghostCircle{
        display: none;
   }
+  
+              .teamName {
+              position: relative;
+              top: 8%;
+              left: 2%;
+              width: auto;
+              padding: 20px 30px 20px 10px;
+              background-color: #D5DCFC;
+              margin: 1px;
+              border-bottom: 0.1em solid blue;
+            }
+
+			.nodeName{
+			float: left;
+			left: 2%;
+			right: 5%;
+			height: 5%;
+			position: relative;
+			margin: 1%;
+			background-color: var(--paper-indigo-300);
+			color: white;
+			width: 10%;
+			font-size: 10pt;
+			}
+			
+			.qframe {
+			width: 100%;
+  position: relative;
+  margin: 0.1%;
+}
 
 </style>
+
+<script src="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/webcomponentsjs/webcomponents-lite.min.js"></script>
+<link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/paper-button/paper-button.html">
+<link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/paper-material/paper-material.html">
+<link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/paper-card/paper-card.html">
+<link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/paper-input/paper-input.html">
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 
 <body>
+        <paper-toolbar>
+            <div class="title flex-direction">Finacle Treasury    -      Team/Project Allocation </div>
+            <paper-icon-button icon="settings" on-tap="showList"></paper-icon-button>
+            <div class="container" tabindex="0">
+              <span> Ganapathy Rajalingam </span>
+              <paper-badge label="4"></paper-badge>
+            </div>
+        </paper-toolbar>
+	
+		<paper-card elevation="3" class="qframe flex layout horizontal wrap">
+		<section class="flex layout vertical wrap">
+<div class="teamName1">
+		<paper-input id="nodeName"  class="nodeName" label="Data" type="String" value="" ></paper-input>
+		<paper-input id="parentNode" class="nodeName" label="Parent Data" type="String" value="FT" ></paper-input>
+        <paper-button  id="addNode" class="nodeName" on-click="addNode()" raised>
+			<a href="#" id="addNode" onclick="addNode()">Add Data</a>
+		</paper-button>
+	</div>
+		</section>
+		</paper-card>
+
+	
       <div id="tree-container"></div>
 
     <script src="https://d3js.org/d3.v3.min.js"></script>
