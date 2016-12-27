@@ -848,3 +848,62 @@ function recursivefnforTreetoArray(data, key, csvArray, csvContent, nameArr, par
         }
         return csvContent;
     }
+
+
+function displayCsv(){
+  console.log("display csv called ");
+
+var jarray =[];
+for ( var i=0, l=Math.min(nameArr.length, parentArr.length); i<l; i++ ) {
+  jarray[i] = [parentArr[i], [nameArr[i]]];
+}
+/*
+  d3.select("#csvtable").append("ol").selectAll("text")
+    .data(jarray)
+    .enter()
+    .append("li")
+    .text(function(d) {
+      return d;
+  });
+*/
+
+  /*d3.select("#csvtable").append("table")
+  .selectAll("tr")
+    // arr1 corresponds to the rows
+    // bound data is not used in the td cells; only arr1.length is used
+    .data(nameArr)
+  .enter().append("tr")
+  .selectAll("td")
+    // arr2 corresponds to the columns
+    .data(parentArr)
+  .enter().append("td")
+    .text(function(d, i, j) { return nameArr[j] + d; }); // d === arr2[i]  */
+
+    var columns = ['Parent', 'Node'];
+
+    var table = d3.select('#csvtable').append('table')
+	var thead = table.append('thead')
+	var tbody = table.append('tbody')
+
+	thead.append('tr')
+	  .selectAll('th')
+	    .data(columns)
+	    .enter()
+	  .append('th')
+	    .text(function (d) { return d })
+
+	var rows = tbody.selectAll('tr')
+	    .data(jarray)
+	    .enter()
+	  .append('tr')
+
+	var cells = rows.selectAll('td')
+	    .data(function(row) {
+	    	return columns.map(function (column) {
+	    		return {column: column, value: row[columns.indexOf(column)]};
+	      })
+      })
+      .enter()
+    .append('td')
+      .text(function (d) { return d.value })
+}
