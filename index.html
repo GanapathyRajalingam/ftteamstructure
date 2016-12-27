@@ -40,7 +40,7 @@
   .ghostCircle, .activeDrag .ghostCircle{
        display: none;
   }
-  
+
               .teamName {
               position: relative;
               top: 8%;
@@ -64,7 +64,7 @@
 			width: 10%;
 			font-size: 10pt;
 			}
-			
+
 			.button{
 			position: relative;
 			margin: 1.5%;
@@ -73,7 +73,7 @@
 			font-size: 10pt;
 			background-color: #D5DCFC;
 			}
-			
+
 			.qframe {
 			top: 1%;
 			width: 100%;
@@ -99,6 +99,7 @@
 <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/paper-input/paper-input.html">
+<link rel="import" href="csvArrays.html">
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 
 <body>
@@ -110,7 +111,7 @@
               <paper-badge label="4"></paper-badge>
             </div>
         </paper-toolbar>
-	
+
 		<paper-card elevation="2" class="qframe flex layout horizontal wrap">
 		<section class="flex layout vertical wrap">
 <div class="teamName1">
@@ -119,16 +120,23 @@
         <paper-button  id="addNode" class="button" on-click="addNode()" raised>
 			<a href="#" id="addNode" onclick="addNode()">Add Data</a>
 		</paper-button>
+		<paper-button  id="downloadcsv" class="button" on-click="downloadCsv()" raised>
+	<a href="#" id="downloadcsv" onclick="downloadCsv()">Download CSV</a>
+</paper-button>
+<paper-button  id="displayCsv" class="button" on-click="displayCsv()" raised>
+<a href="#" id="displayCsv" onclick="displayCsv()">Display CSV</a>
+</paper-button>
 		<paper-card  class="card"  elevation="0">
 			You can add "Data" and Drag and Drop to different "Parent Data" accordingly.
 		</paper-card>
-		
+
 	</div>
 		</section>
 		</paper-card>
 
-	
+
       <div id="tree-container"></div>
+			<csv-arrays></csv-arrays>
 
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="teamAllocation.js"></script>

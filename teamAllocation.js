@@ -2,6 +2,10 @@
 var root;
 var treeDatabkup;
 var tree;
+var finalCsvArray = [[]];
+var nameArr = [];
+var parentArr = [];
+
               var totalNodes = 0;
                var maxLabelLength = 0;
                // variables for drag/drop
@@ -15,7 +19,7 @@ var tree;
                var duration = 750;
               var viewerWidth =  $(document).width();
                var viewerHeight = $(document).height();
-			   
+
 			                  tree = d3.layout.tree()
                    .size([viewerHeight, viewerWidth]);
 
@@ -25,7 +29,7 @@ var tree;
                        return [d.y, d.x];
                    });
 
-				   
+
                function sortTree() {
                 // console.log("sort tree called");
 
@@ -35,15 +39,15 @@ var tree;
                    return b.name.toLowerCase() < a.name.toLowerCase() ? 1 : -1;
                  });
                }
-			   
+
 			function zoom() {
                 // console.log("zoom fn called ");
                  svgGroup.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
                }
-			   
+
                // define the zoomListener which calls the zoom function on the "zoom" event constrained within the scaleExtents
                var zoomListener = d3.behavior.zoom().scaleExtent([0.1, 1.2]).on("zoom", zoom);
-			   
+
 			                  // define the baseSvg, attaching a class for styling and the zoomListener
                var baseSvg = d3.select("#tree-container").append("svg")
                .attr("width", viewerWidth)
@@ -149,7 +153,7 @@ loadJsonData();
                  update(d);
                  centerNode(d);
                }
-			   
+
                              function pan(domNode, direction) {
                                 console.log(" pan fn called");
                                   var speed = panSpeed;
@@ -188,7 +192,7 @@ loadJsonData();
                               };
 
 
-							  
+
                                              function initiateDrag(d, domNode) {
                                                console.log("initdrag called ");
                                                  draggingNode = d;
@@ -385,7 +389,7 @@ loadJsonData();
                        // d.y = (d.depth * 500); //500px per level.
                    });
 
-                   // Update the nodes…
+                   // Update the nodesï¿½
                   //console.log("about to call select all nodes ");
                    node = svgGroup.selectAll("g.node")
                        .data(nodes, function(d) {
@@ -403,8 +407,8 @@ loadJsonData();
                        })
                        .on('click', click);
 
-                   nodeEnter.append("circle")  // change dis to path and handle the circle reference everywhere .. then diferent shapes will be enabled 
-                       .attr('class', 'nodeCircle')    // based on the d.shape and d3.svg.symbol 
+                   nodeEnter.append("circle")  // change dis to path and handle the circle reference everywhere .. then diferent shapes will be enabled
+                       .attr('class', 'nodeCircle')    // based on the d.shape and d3.svg.symbol
                        .attr("r", 0)
 					   .attr("d", d3.svg.symbol()
 								.size(200)
@@ -489,7 +493,7 @@ loadJsonData();
                    nodeExit.select("text")
                        .style("fill-opacity", 0);
 
-                   // Update the links…
+                   // Update the linksï¿½
                    var link = svgGroup.selectAll("path.link")
                        .data(links, function(d) {
                           console.log("updating links");
@@ -539,7 +543,7 @@ loadJsonData();
                    });
                }
 
-			
+
 
 function loadJsonData(){
 // load the external data
@@ -553,7 +557,7 @@ d3.json("https://ganapathyrajalingam.github.io/ftteamstructure/team.json", funct
 
 
 function makeChart(treeData) {
-    
+
     console.log(" read team.json ")
 
         console.log('mycollapsibletree makechart called ');
@@ -564,14 +568,14 @@ function makeChart(treeData) {
 				console.log(treeData);
 
 			   //treeData = JSON.parse(treeData);
-				
+
                root = treeData;
 				console.log(root);
                var margin = {top: 5, right: 20, bottom: 5, left: 20};
             //       viewerWidth = 960 - margin.right - margin.left,
             //       viewerHeight = 800 - margin.top - margin.bottom;
                // size of the diagram
- 
+
           /*
                    var svg = d3.select("#tree-container").append("svg")
                        .attr("width", viewerWidth )
@@ -662,8 +666,6 @@ function makeChart(treeData) {
                  }
                });
 
-
-
                // Sort the tree initially incase the JSON isn't in a sorted order.
                sortTree();
 
@@ -675,8 +677,7 @@ function makeChart(treeData) {
                // Layout the tree initially and center on the root node.
                update(root);
                centerNode(root);
-	
-	
+
 };
 
 function addNode(){
@@ -686,24 +687,164 @@ function addNode(){
 	var parentNode = document.getElementById("parentNode").value;
 	console.log(parentNode);
 	console.log(tree);
-	
+
 	var currentNode = tree.nodes(parentNode);
 	console.log(currentNode);
 	var temp = d3.select(currentNode);
 	console.log(temp);
-		
+
 	  // Add a new datum to a random parent.
   var newData = {name: nodeVal};
-  
+
   root.children.push(newData);
   updateTempConnector();
   console.log("root");
   console.log(root);
   console.log("treeDatabkup");
   console.log(treeDatabkup);
-  
+
   //if (parent.children) parent.children.push(d); else parent.children = [d];
   update(root);
   //root.push(d);
-  
 }
+
+// Try this for loading CSV and converting to JSON
+// https://github.com/Keyang/node-csvtojson#menu
+
+//var csv is the CSV file with headers
+function csvJSON(csv){
+  var lines=csv.split("\n");
+  var result = [];
+  var headers=lines[0].split(",");
+
+  for(var i=1;i<lines.length;i++){
+	  var obj = {};
+	  var currentline=lines[i].split(",");
+	  for(var j=0;j<headers.length;j++){
+		  obj[headers[j]] = currentline[j];
+	  }
+	  result.push(obj);
+  }
+
+  //return result; //JavaScript object
+  return JSON.stringify(result); //JSON
+}
+
+
+function downloadCsv() {
+//            console.log(root);
+            var data = root;
+            console.log(data);
+            var csvContent = "data:text/csv;charset=utf-8,";
+
+            var csvArray = [];
+
+            var parentStr;
+            var currObj = data;
+            var i=0;
+            var k=0;
+            var x=0;
+            var y=0;
+                for (var key in data) {
+                  if( k==0){  // remove this condn to handle multiple fields in the object apart from "NAME"
+//                  console.log(key);
+//                  console.log(data.hasOwnProperty(key));
+                  if (data.hasOwnProperty(key)) {
+                      //csvArray[i] = (data[key]);
+                      nameArr.push("ChildNodes");
+                      parentArr.push("ParentNodes");
+                      parentStr = "null";
+                      x=0;
+                     csvContent = recursivefnforTreetoArray(data, key, csvArray,csvContent, nameArr, parentArr, parentStr, x);
+                  }
+                  //csvContent += "\n";
+                  csvContent += nameArr.join(",");
+                  csvContent +=  ",\r\n,";
+                  csvContent += parentArr.join(",");
+                  csvContent +=  ",\r\n,";
+                  console.log("csvContent");
+                  console.log(csvContent);
+                  console.log("node ");
+                  console.log(nameArr);
+                  console.log("Parent Arr");
+                  console.log(parentArr);
+                  i++;
+                }
+                k++;
+                }
+
+            var encodedUri = encodeURI(csvContent);csvContent += nameArr.join(",");
+            csvContent +=  ",\r\n,";
+            csvContent += parentArr.join(",");
+            csvContent +=  ",\r\n,";
+            var link = document.createElement("a");
+      //      link.setAttribute("href", encodedUri);
+      //      link.setAttribute("download", "team.csv");
+
+        //    link.click();
+        }
+
+function recursivefnforTreetoArray(data, key, csvArray, csvContent, nameArr, parentArr, parentStr, x) {
+        var newArray = 0;
+//        console.log("recursivefnforTreetoArray called");
+//        console.log(data);
+//        console.log(key);
+//        console.log(data[key]);
+        csvArray.push(data[key]);
+        nameArr.push(data[key]);
+        parentArr.push(parentStr);
+        //finalCsvArray[x].push(data[key]);
+        console.log("post unshift ie prefixing ");
+//        console.log(data.children);
+        x++;
+        for(var index=0;index<data.children.length;index++){
+          var currObj = data.children[index];
+
+          var elementArray = data.children[index][key];
+//          console.log(elementArray);
+          csvArray.push(elementArray);
+          nameArr.push(elementArray);
+          parentArr.push(data[key]);
+
+          //finalCsvArray[x].push(data[key]);
+
+          console.log(csvArray.join(","));
+          if ( currObj.children){
+            var len = currObj.children.length;
+            var i = 0;
+            x++;
+            for ( var i=0; i < len; i++){
+              console.log("calling iteratively for the child");
+//              console.log(index);
+//              console.log(currObj.children);
+              parentStr = elementArray;
+              csvContent = recursivefnforTreetoArray(currObj.children[i], key, csvArray, csvContent, nameArr, parentArr, parentStr, x);
+//              console.log("i tree branch till leaf node done ");
+//              console.log(i);
+              console.log(data.children[i][key] + "Processed");
+              console.log(data.children.length);
+            }
+          }
+          else{
+            console.log('new array shld start');
+            newArray = 1;
+          }
+        }
+        //console.log(data.children);
+        //csvContent += data.children[0].join("\n");
+        if ( newArray == 1){
+          console.log(csvArray);
+        //  finalCsvArray[0].push(csvArray);
+          //csvContent += nameArr.join(",");
+          //csvContent +=  ",\r\n,";
+          //csvContent += parentArr.join(",");
+          //csvContent +=  ",\r\n,";
+          //console.log("CSV Content ");
+          //console.log(csvContent);
+          //console.log("node ");
+          //console.log(nameArr);
+          //console.log("Parent Arr");
+          //console.log(parentArr);
+        }
+        return csvContent;
+    }
