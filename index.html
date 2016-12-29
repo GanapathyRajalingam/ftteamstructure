@@ -99,7 +99,7 @@
 <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/paper-input/paper-input.html">
-<!--<link rel="import" href="csvArrays.html"> -->
+<link rel="import" href="csvArrays.html">
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 
 <body>
@@ -136,10 +136,16 @@
 
 
       <div id="tree-container"></div>
-			<!-- <csv-arrays></csv-arrays> -->
 			<div id="csvtable"></div>
 
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="teamAllocation.js"></script>
+		<script>
+			console.log("displaying array ");
+			console.log(nameArr);
+			</script>
+
+		 <csv-arrays name-array=nameArr></csv-arrays> 
+
 
 </html>
