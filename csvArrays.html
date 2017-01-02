@@ -49,10 +49,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-card  class="card flex layout horizontal wrap"  elevation="1">
 
               <template is="dom-repeat" items="{{nameArray}}">
-                <div> {{item.product_type}} {{item.cptyname}} </div>
-              </template>
-              <template is="dom-repeat" items="{{parentArray}}">
-                <div> {{item.product_type}} {{item.cptyname}} </div>
+                <div> {{item.name}}  </div>
               </template>
 
             </paper-card>

@@ -66,6 +66,17 @@
 						"name" : "ONGOING - Dealer Pad - New requirements during UAT"
 					}
 					]
+				},
+				{
+					"name" : "BRAC",
+					"type" : "lightblue",
+					"shape" : "triangle-down",
+					"children" :
+					[
+					{
+						"name" : "OPEN - SecPos - MTM Price on Month End"
+					}
+					]
 				}
 				]
             }, 
