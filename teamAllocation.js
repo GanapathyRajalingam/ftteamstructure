@@ -430,7 +430,8 @@ loadJsonData();
                            .style("left", xPosition + "px")
                            .style("top", yPosition + "px");
                          d3.select("#tooltip #heading")
-                           .text(d.name);
+                           //.text(d.name)
+                           .html('<a href= "http://google.com">' + d.name + "</a>" + "<br/");
                          d3.select("#tooltip #percentage")
                            .text("%" + d.shape);
                          d3.select("#tooltip #revenue")
@@ -440,7 +441,7 @@ loadJsonData();
                        })
                        .on("mouseout", function(d) {
                          console.log("outcircle");
-                         d3.select("#tooltip").classed("hidden", true);
+                         //d3.select("#tooltip").classed("hidden", true);
                        });
 
                    nodeEnter.append("circle")  // change dis to path and handle the circle reference everywhere .. then diferent shapes will be enabled
@@ -963,7 +964,7 @@ function treeObjArray(newObj, name, childObj)
 
 function csvToJson(){
   console.log(" csv to json");
-  var text = 'name,parent,Eve,Cain,Eve,Seth,Eve,Enos,Seth,Noam,Seth,Abel,Eve,Awan,Eve,Enoch,Awan,Azura,Eve';
+  var text = 'name,parent\nEve,Cain\nEve,Seth\nEve,Enos\nSeth,Noam\nSeth,Abel\nEve,Awan\nEve,Enoch\nAwan,Azura';
 
   //console.log(jarray);
   console.log(jarray.join(","));
