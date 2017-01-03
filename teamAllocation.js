@@ -5,6 +5,7 @@ var tree;
 var finalCsvArray = [[]];
 var nameArr = [];
 var parentArr = [];
+var jarray =[];
 
               var totalNodes = 0;
                var maxLabelLength = 0;
@@ -19,6 +20,12 @@ var parentArr = [];
                var duration = 750;
               var viewerWidth =  $(document).width();
                var viewerHeight = $(document).height();
+
+               var tooltipdiv = d3.select("body").append("div")
+               .attr("class", "tooltip")//add the tooltip class
+               .style("position", "absolute")
+               .style("z-index", "10")
+               .style("visibility", "hidden");
 
 			                  tree = d3.layout.tree()
                    .size([viewerHeight, viewerWidth]);
@@ -183,11 +190,18 @@ loadJsonData();
 
 
                               var overCircle = function(d) {
+                                console.log("overCircle");
+
                                   selectedNode = d;
+                                  tooltip.style("visibility", "visible")
+                                        .text('SOURCE : ' + d.name );
                                   updateTempConnector();
                               };
                               var outCircle = function(d) {
+                                console.log("outCircle");
                                   selectedNode = null;
+                                  d3.select(this).select("text.hover").remove();
+                                  tooltip.style("visibility", "hidden");
                                   updateTempConnector();
                               };
 
@@ -348,6 +362,7 @@ loadJsonData();
                    // Compute the new height, function counts total children of root node and sets tree height accordingly.
                    // This prevents the layout looking squashed when new nodes are made visible or looking sparse when nodes are removed
                    // This makes the layout more consistent.
+
                    var levelWidth = [1];
                    var childCount = function(level, n) {
                     console.log(n);
@@ -405,7 +420,28 @@ loadJsonData();
                        .attr("transform", function(d) {
                            return "translate(" + source.y0 + "," + source.x0 + ")";
                        })
-                       .on('click', click);
+                       .on('click', click)
+                       .attr('pointer-events', 'mouseover')
+                       .on("mouseover", function(d) {
+                         var xPosition = d3.event.pageX + 5;
+                         var yPosition = d3.event.pageY + 5;
+
+                         d3.select("#tooltip")
+                           .style("left", xPosition + "px")
+                           .style("top", yPosition + "px");
+                         d3.select("#tooltip #heading")
+                           .text(d.name);
+                         d3.select("#tooltip #percentage")
+                           .text("%" + d.shape);
+                         d3.select("#tooltip #revenue")
+                           .text("£" + d.type );
+                         d3.select("#tooltip").classed("hidden", false);
+
+                       })
+                       .on("mouseout", function(d) {
+                         console.log("outcircle");
+                         d3.select("#tooltip").classed("hidden", true);
+                       });
 
                    nodeEnter.append("circle")  // change dis to path and handle the circle reference everywhere .. then diferent shapes will be enabled
                        .attr('class', 'nodeCircle')    // based on the d.shape and d3.svg.symbol
@@ -447,7 +483,8 @@ loadJsonData();
                        })
                        .on("mouseout", function(node) {
                            outCircle(node);
-                       });
+                       })
+                          ;
 
                    // Update the text to reflect whether node has children or not.
                    node.select('text')
@@ -730,13 +767,11 @@ function csvJSON(csv){
   return JSON.stringify(result); //JSON
 }
 
-
 function downloadCsv() {
 //            console.log(root);
             var data = root;
             console.log(data);
             var csvContent = "data:text/csv;charset=utf-8,";
-
             var csvArray = [];
 
             var parentStr;
@@ -773,15 +808,18 @@ function downloadCsv() {
                 k++;
                 }
 
-            var encodedUri = encodeURI(csvContent);csvContent += nameArr.join(",");
+
+            csvContent += nameArr.join(",");
             csvContent +=  ",\r\n,";
             csvContent += parentArr.join(",");
             csvContent +=  ",\r\n,";
-            var link = document.createElement("a");
-      //      link.setAttribute("href", encodedUri);
-      //      link.setAttribute("download", "team.csv");
 
-        //    link.click();
+            //var encodedUri = encodeURI(csvContent);
+            //var link = document.createElement("a");
+            //link.setAttribute("href", encodedUri);
+            //link.setAttribute("download", "team.csv");
+
+            //link.click();
         }
 
 function recursivefnforTreetoArray(data, key, csvArray, csvContent, nameArr, parentArr, parentStr, x) {
@@ -797,6 +835,7 @@ function recursivefnforTreetoArray(data, key, csvArray, csvContent, nameArr, par
         console.log("post unshift ie prefixing ");
 //        console.log(data.children);
         x++;
+
         for(var index=0;index<data.children.length;index++){
           var currObj = data.children[index];
 
@@ -853,10 +892,11 @@ function recursivefnforTreetoArray(data, key, csvArray, csvContent, nameArr, par
 function displayCsv(){
   console.log("display csv called ");
 
-var jarray =[];
+
 for ( var i=0, l=Math.min(nameArr.length, parentArr.length); i<l; i++ ) {
   jarray[i] = [parentArr[i], [nameArr[i]]];
 }
+console.log(jarray);
 /*
   d3.select("#csvtable").append("ol").selectAll("text")
     .data(jarray)
@@ -906,4 +946,28 @@ for ( var i=0, l=Math.min(nameArr.length, parentArr.length); i<l; i++ ) {
       .enter()
     .append('td')
       .text(function (d) { return d.value })
+
+
+      csvToJson();
+}
+
+
+function treeObjArray(newObj, name, childObj)
+{
+   newObj.name=name;
+   newObj.children.push(childObj);
+   console.log("created object ");
+   console.log(newObj);
+}
+
+
+function csvToJson(){
+  console.log(" csv to json");
+  var text = 'name,parent,Eve,Cain,Eve,Seth,Eve,Enos,Seth,Noam,Seth,Abel,Eve,Awan,Eve,Enoch,Awan,Azura,Eve';
+
+  //console.log(jarray);
+  console.log(jarray.join(","));
+  var table = d3.csvParse(text);
+  console.log(" table");
+  console.log(table);
 }
