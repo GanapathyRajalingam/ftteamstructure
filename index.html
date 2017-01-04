@@ -127,8 +127,12 @@
 <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/paper-input/paper-input.html">
 <link rel="import" href="csvArrays.html">
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<!--
+<link href="https://cdn.vaadin.com/vaadin-elements/latest/vaadin-grid/vaadin-grid.html" rel="import">
+<script src="https://cdn.vaadin.com/vaadin-elements/latest/webcomponentsjs/webcomponents-lite.js"></script> -->
 <body>
         <paper-toolbar>
             <div class="title flex-direction">Finacle Treasury    -      Team/Project Allocation </div>
@@ -181,5 +185,21 @@
   <p><span id="revenue"></span></p>
 </div>
 
+<!--
+<div id="csvtable-1">
+	<vaadin-grid>
+		<table>
+			<colgroup>
+				<col name="ChildNodes">
+				<col name="ParentNodes">
+
+			</colgroup>
+		</table>
+	</vaadin-grid>
+</div>
+-->
+<div id="jsontext">
+	<p> <span id="jsont"></span></p>
+</div>
 
 </html>

@@ -5,6 +5,7 @@
 	"type" : "black",
 	"shape" : "circle",
   "milestones" : " TBD",
+  "value" : "1",
     "children":
 	[
 	{

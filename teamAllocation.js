@@ -861,7 +861,7 @@ function recursivefnforTreetoArray(data, key, csvArray, csvContent, nameArr, par
               csvContent = recursivefnforTreetoArray(currObj.children[i], key, csvArray, csvContent, nameArr, parentArr, parentStr, x);
 //              console.log("i tree branch till leaf node done ");
 //              console.log(i);
-              console.log(data.children[i][key] + "Processed");
+              //console.log(data.children[i][key] + "Processed");
               console.log(data.children.length);
             }
           }
@@ -948,6 +948,8 @@ console.log(jarray);
     .append('td')
       .text(function (d) { return d.value })
 
+//var grid =  document.querySelector('vaadin-grid');
+//grid.items = jarray;
 
       csvToJson();
 }
@@ -986,5 +988,8 @@ function csvToJson(){
 
     console.log(csvRoot);
 
-    console.log(JSON.stringify(csvRoot));
+    d3.select("#jsontext #jsont")
+      .text(JSON.stringify(table));
+
+    //console.log(JSON.stringify(csvRoot));
 }
