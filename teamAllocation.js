@@ -5,6 +5,8 @@ var tree;
 var finalCsvArray = [[]];
 var nameArr = [];
 var parentArr = [];
+var roleArr = [];
+var milestonesArr = [];
 var jarray =[];
 
               var totalNodes = 0;
@@ -797,9 +799,11 @@ function downloadCsv() {
                       //csvArray[i] = (data[key]);
                       nameArr.push("ChildNodes");
                       parentArr.push("ParentNodes");
+                      roleArr.push("Role");
+                      milestonesArr.push("MileStones");
                       parentStr = "";
                       x=0;
-                     csvContent = recursivefnforTreetoArray(data, key, csvArray,csvContent, nameArr, parentArr, parentStr, x);
+                     csvContent = recursivefnforTreetoArray(data, key, csvArray,csvContent, nameArr, parentArr, parentStr, x,roleArr, milestonesArr );
                   }
                   //csvContent += "\n";
                   csvContent += nameArr.join(",");
@@ -831,15 +835,18 @@ function downloadCsv() {
             //link.click();
         }
 
-function recursivefnforTreetoArray(data, key, csvArray, csvContent, nameArr, parentArr, parentStr, x) {
+function recursivefnforTreetoArray(data, key, csvArray, csvContent, nameArr, parentArr, parentStr, x, roleArr, milestonesArr) {
         var newArray = 0;
 //        console.log("recursivefnforTreetoArray called");
 //        console.log(data);
 //        console.log(key);
 //        console.log(data[key]);
+console.log(data["role"]);
         csvArray.push(data[key]);
         nameArr.push(data[key]);
         parentArr.push(parentStr);
+        roleArr.push(data["role"]);
+        milestonesArr.push(data["milestones"]);
         //finalCsvArray[x].push(data[key]);
         console.log("post unshift ie prefixing ");
 //        console.log(data.children);
@@ -853,6 +860,8 @@ function recursivefnforTreetoArray(data, key, csvArray, csvContent, nameArr, par
           csvArray.push(elementArray);
           nameArr.push(elementArray);
           parentArr.push(data[key]);
+          roleArr.push(data.children[index]["role"]);
+          milestonesArr.push(data.children[index]["milestones"]);
 
           //finalCsvArray[x].push(data[key]);
 
@@ -866,7 +875,7 @@ function recursivefnforTreetoArray(data, key, csvArray, csvContent, nameArr, par
 //              console.log(index);
 //              console.log(currObj.children);
               parentStr = elementArray;
-              csvContent = recursivefnforTreetoArray(currObj.children[i], key, csvArray, csvContent, nameArr, parentArr, parentStr, x);
+              csvContent = recursivefnforTreetoArray(currObj.children[i], key, csvArray, csvContent, nameArr, parentArr, parentStr, x, roleArr, milestonesArr);
 //              console.log("i tree branch till leaf node done ");
 //              console.log(i);
               //console.log(data.children[i][key] + "Processed");
@@ -903,7 +912,7 @@ function displayCsv(){
 
 
 for ( var i=0, l=Math.min(nameArr.length, parentArr.length); i<l; i++ ) {
-  jarray[i] = [parentArr[i], [nameArr[i]]];
+  jarray[i] = [parentArr[i], [nameArr[i], [roleArr[i], [milestonesArr[i]]]]];
 }
 console.log(jarray);
 /*
@@ -928,7 +937,7 @@ console.log(jarray);
   .enter().append("td")
     .text(function(d, i, j) { return nameArr[j] + d; }); // d === arr2[i]  */
 
-    var columns = ['Parent', 'Node'];
+    var columns = ['Parent', 'Node', 'Role', 'MileStones'];
 
     var table = d3.select('#csvtable').append('table')
 	var thead = table.append('thead')
