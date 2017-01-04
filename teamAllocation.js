@@ -451,7 +451,7 @@ loadJsonData();
                        })
                        .on("mouseout", function(d) {
                          console.log("outcircle");
-                         //d3.select("#tooltip").classed("hidden", true);
+                         d3.select("#tooltip").classed("hidden", true);
                        });
 
                    nodeEnter.append("circle")  // change dis to path and handle the circle reference everywhere .. then diferent shapes will be enabled
