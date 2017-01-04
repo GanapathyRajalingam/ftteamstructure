@@ -12,12 +12,14 @@
         "name": "Beta Support",
 		"type" : "lightsteelblue",
 		"shape" : "square",
+    "milestones" : " UAT",
         "children":
 		[
         {
             "name": "Ganapathy Rajalingam",
 			"type" : "lightgreen",
 			"shape" : "triangle-up",
+      "milestones" : "HNB UAT",
             "children":
 			[
             {
@@ -25,12 +27,14 @@
                 "size": 3938,
 				"type" : "lightblue",
 				"shape" : "diamond",
+        "milestones" : "HNB UAT",
 				"children" :
 				[
 				{
 					"name": "HNB-1",
 					"type" : "lightblue",
 					"shape" : "triangle-down",
+          "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
@@ -51,6 +55,7 @@
 					"name" : "Sampath-1",
 					"type" : "lightblue",
 					"shape" : "triangle-down",
+          "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
@@ -62,6 +67,7 @@
 					"name" : "AXIS-1",
 					"type" : "lightblue",
 					"shape" : "triangle-down",
+          "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
@@ -73,6 +79,7 @@
 					"name" : "BRAC-1",
 					"type" : "lightblue",
 					"shape" : "triangle-down",
+          "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
@@ -87,12 +94,14 @@
 				"type" : "#EE9A4D",
                 "size": 3812,
 				"shape" : "diamond",
+        "milestones" : "HNB UAT",
 				"children" :
 				[
 				{
 					"name": "HNB-2",
 					"type" : "#EE9A4D",
 					"shape" : "triangle-down",
+          "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
@@ -110,6 +119,7 @@
 					"name" : "UBI - Phase I-2",
 					"type" : "#EE9A4D",
 					"shape" : "triangle-down",
+          "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
@@ -124,6 +134,7 @@
 					"name" : "UBI - Phase II-2",
 					"type" : "#EE9A4D",
 					"shape" : "triangle-down",
+          "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
@@ -138,12 +149,14 @@
 				"type" : "lightgreen",
                 "size": 6714,
 				"shape" : "diamond",
+        "milestones" : "HNB UAT",
 				"children" :
 				[
 				{
 					"name": "HNB-3",
 					"type" : "lightgreen",
 					"shape" : "triangle-down",
+          "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
@@ -155,6 +168,7 @@
 					"name" : "UBI - Phase II-3",
 					"type" : "lightgreen",
 					"shape" : "triangle-down",
+          "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
@@ -166,6 +180,7 @@
 					"name" : "UBI - Phase I-3",
 					"type" : "lightgreen",
 					"shape" : "triangle-down",
+          "milestones" : "HNB UAT",
 					"children" :
 					[
 					{

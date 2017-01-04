@@ -433,7 +433,7 @@ loadJsonData();
                            //.text(d.name)
                            .html('<a href= "http://google.com">' + d.name + "</a>" + "<br/");
                          d3.select("#tooltip #percentage")
-                           .text("%" + d.shape);
+                           .text("%" + d.milestones);
                          d3.select("#tooltip #revenue")
                            .text("£" + d.type );
                          d3.select("#tooltip").classed("hidden", false);
