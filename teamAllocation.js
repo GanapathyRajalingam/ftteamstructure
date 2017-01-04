@@ -425,18 +425,25 @@ loadJsonData();
                        .on("mouseover", function(d) {
                          var xPosition = d3.event.pageX + 5;
                          var yPosition = d3.event.pageY + 5;
+                         var yourImagePath = "https://ganapathyrajalingam.github.io/ftteamstructure/Novation.jpg";
+                         var string = "<img src= " +  yourImagePath  + " height='100' width='100' />";
 
                          d3.select("#tooltip")
                            .style("left", xPosition + "px")
                            .style("top", yPosition + "px");
                          d3.select("#tooltip #heading")
-                           //.text(d.name)
-                           .html('<a href= "http://google.com">' + d.name + "</a>" + "<br/");
-                         d3.select("#tooltip #percentage")
-                           .text("%" + d.milestones);
-                         d3.select("#tooltip #revenue")
+                           .text("Name : " + d.name);
+                           //.html('<a href= "http://google.com">' + d.name + "</a>" + "<br/");
+                         d3.select("#tooltip #milestones")
+                           .text("MileStones : " + d.milestones);
+                           d3.select("#tooltip #role")
+                             .text("Role : " + d.role);
+                         d3.select("#tooltip #profile")
                            //.text("£" + d.type );
-                           .html ( "<img src=Novation.jpg />");
+                           .html ( string)
+                           .style("left", (d3.event.pageX + 10) + "px")
+                           .style("top", (d3.event.pageY + 50) + "px")
+                           .style("font-color", "white");
                          d3.select("#tooltip").classed("hidden", false);
 
                        })

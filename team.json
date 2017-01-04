@@ -5,6 +5,7 @@
 	"type" : "black",
 	"shape" : "circle",
   "milestones" : " TBD",
+  "role" : "Team",
   "value" : "1",
     "children":
 	[
@@ -13,13 +14,15 @@
 		"type" : "lightsteelblue",
 		"shape" : "square",
     "milestones" : " UAT",
+    "role" : "Team",
         "children":
 		[
         {
             "name": "Ganapathy Rajalingam",
 			"type" : "lightgreen",
 			"shape" : "triangle-up",
-      "milestones" : "HNB UAT",
+      "milestones" : "HNB, Sampath UAT/GoLive & Capital Charge Consolidation",
+      "role" : "Senior Technical Manager",
             "children":
 			[
             {
@@ -27,7 +30,8 @@
                 "size": 3938,
 				"type" : "lightblue",
 				"shape" : "diamond",
-        "milestones" : "HNB UAT",
+        "milestones" : "Axis CR, HNB, Sampath UAT/GoLive",
+        "role" : "Product Technical Lead",
 				"children" :
 				[
 				{
@@ -94,7 +98,8 @@
 				"type" : "#EE9A4D",
                 "size": 3812,
 				"shape" : "diamond",
-        "milestones" : "HNB UAT",
+        "milestones" : "HNB, Sampath UAT/GoLive & Capital Charge Consolidation",
+        "role" : "Product Technical Lead",
 				"children" :
 				[
 				{
@@ -149,7 +154,8 @@
 				"type" : "lightgreen",
                 "size": 6714,
 				"shape" : "diamond",
-        "milestones" : "HNB UAT",
+        "milestones" : "HNB, Sampath UAT/GoLive & Capital Charge Consolidation",
+        "role" : "Product Technical Lead",
 				"children" :
 				[
 				{
