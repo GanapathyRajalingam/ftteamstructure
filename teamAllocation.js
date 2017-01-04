@@ -789,7 +789,7 @@ function downloadCsv() {
                       //csvArray[i] = (data[key]);
                       nameArr.push("ChildNodes");
                       parentArr.push("ParentNodes");
-                      parentStr = "null";
+                      parentStr = "";
                       x=0;
                      csvContent = recursivefnforTreetoArray(data, key, csvArray,csvContent, nameArr, parentArr, parentStr, x);
                   }
@@ -964,11 +964,27 @@ function treeObjArray(newObj, name, childObj)
 
 function csvToJson(){
   console.log(" csv to json");
-  var text = 'name,parent\nEve,Cain\nEve,Seth\nEve,Enos\nSeth,Noam\nSeth,Abel\nEve,Awan\nEve,Enoch\nAwan,Azura';
+  //var text = 'parent,name\n,Eve\nEve,Seth\nEve,Enos\nSeth,Noam\nSeth,Abel\nEve,Awan\nEve,Enoch\nAwan,Azura';
+  var text = jarray.join("\n");
 
   //console.log(jarray);
-  console.log(jarray.join(","));
+  console.log(jarray.join("\n"));
   var table = d3.csvParse(text);
   console.log(" table");
   console.log(table);
+  console.log(JSON.stringify(table));
+
+//  var csvRoot = d3.stratify()
+//    .id(function(d) { return d.name; })
+//    .parentId(function(d) { return d.parent; })
+//    (table);
+
+    var csvRoot = d3.stratify()
+      .id(function(d) { return d.ChildNodes; })
+      .parentId(function(d) { return d.ParentNodes; })
+      (table);
+
+    console.log(csvRoot);
+
+    console.log(JSON.stringify(csvRoot));
 }
