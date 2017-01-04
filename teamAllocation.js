@@ -435,7 +435,8 @@ loadJsonData();
                          d3.select("#tooltip #percentage")
                            .text("%" + d.milestones);
                          d3.select("#tooltip #revenue")
-                           .text("£" + d.type );
+                           //.text("£" + d.type );
+                           .html ( "<img src=Novation.jpg />");
                          d3.select("#tooltip").classed("hidden", false);
 
                        })
