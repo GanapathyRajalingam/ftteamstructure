@@ -2,6 +2,7 @@
   "teamListDetails" :
   [{
     "name": "FT",
+    "shortName" : "FT",
 	"type" : "black",
 	"shape" : "circle",
   "milestones" : " TBD",
@@ -11,6 +12,7 @@
 	[
 	{
         "name": "Beta Support",
+        "shortName" : "BetaSupp",
 		"type" : "lightsteelblue",
 		"shape" : "square",
     "milestones" : " UAT",
@@ -19,6 +21,7 @@
 		[
         {
             "name": "Ganapathy Rajalingam",
+            "shortName" : "Gana",
 			"type" : "lightgreen",
 			"shape" : "triangle-up",
       "milestones" : "HNB, Sampath UAT/GoLive & Capital Charge Consolidation",
@@ -27,6 +30,7 @@
 			[
             {
                 "name": "Vishwanathan K",
+                "shortName" : "KV",
                 "size": 3938,
 				"type" : "lightblue",
 				"shape" : "diamond",
@@ -36,58 +40,69 @@
 				[
 				{
 					"name": "HNB-1",
+          "shortName" : "HNB",
 					"type" : "lightblue",
 					"shape" : "triangle-down",
           "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
-						"name" : "DELIVERRED - FIFO - Enablement in SecPos"
+						"name" : "DELIVERRED - FIFO - Enablement in SecPos",
+            "shortName" : "SecPos"
 					},
 					{
-						"name" : "OPEN - FIFO - Backdated cases handling"
+						"name" : "OPEN - FIFO - Backdated cases handling",
+            "shortName" : "SecPos"
 					},
 					{
-						"name" : "OPEN - FIFO - Short Sale cases handling"
+						"name" : "OPEN - FIFO - Short Sale cases handling",
+            "shortName" : "SecPos"
 					},
 					{
-						"name" : "OPEN - SecPos - UnAmortised prem issue with Trade Date realisation"
+						"name" : "OPEN - SecPos - UnAmortised prem issue with Trade Date realisation",
+            "shortName" : "SecPos"
 					}
 					]
 				},
 				{
 					"name" : "Sampath-1",
+          "shortName" : "SMB",
 					"type" : "lightblue",
 					"shape" : "triangle-down",
           "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
-						"name" : "OPEN - SecPos - MTM Price on Month End"
+						"name" : "OPEN - SecPos - MTM Price on Month End",
+            "shortName" : "SecPos"
 					}
 					]
 				},
 				{
 					"name" : "AXIS-1",
+          "shortName" : "AXIS",
 					"type" : "lightblue",
 					"shape" : "triangle-down",
           "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
-						"name" : "ONGOING - Dealer Pad - New requirements during UAT"
+						"name" : "ONGOING - Dealer Pad - New requirements during UAT",
+            "shortName" : "DealerPad"
 					}
 					]
 				},
 				{
 					"name" : "BRAC-1",
+          "shortName" : "BRAC",
 					"type" : "lightblue",
 					"shape" : "triangle-down",
           "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
-						"name" : "OPEN - SecPos - MTM Price on Month End"
+						"name" : "OPEN - SecPos - MTM Price on Month End",
+            "shortName" : "SecPos"
 					}
 					]
 				}
@@ -95,6 +110,7 @@
             },
             {
                 "name": "Krishna Kishore",
+                "shortName" : "Kishore",
 				"type" : "#EE9A4D",
                 "size": 3812,
 				"shape" : "diamond",
@@ -104,46 +120,55 @@
 				[
 				{
 					"name": "HNB-2",
+          "shortName" : "HNB",
 					"type" : "#EE9A4D",
 					"shape" : "triangle-down",
           "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
-						"name" : "OPEN - SecPos - Yield Calc when MT date falling on holiday for BOND-EQUIVALENT method"
+						"name" : "OPEN - SecPos - Yield Calc when MT date falling on holiday for BOND-EQUIVALENT method",
+            "shortName" : "SecPos"
 					},
 					{
-						"name" : "OPEN - Structured Products License Changes"
+						"name" : "OPEN - Structured Products License Changes",
+            "shortName" : "License"
 					},
 					{
-						"name" : "DELIVERRED - Tolerance - Rate Tolerance Changes"
+						"name" : "DELIVERRED - Tolerance - Rate Tolerance Changes",
+            "shortName" : "Tolrnce",
 					}
 					]
 				},
 				{
 					"name" : "UBI - Phase I-2",
+          "shortName" : "UBI",
 					"type" : "#EE9A4D",
 					"shape" : "triangle-down",
           "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
-						"name" : "OPEN - Capital Charge - Pending Items post Testing"
+						"name" : "OPEN - Capital Charge - Pending Items post Testing",
+            "shortName" : "Basel 3"
 					},
 					{
-						"name" : "OPEN - UAT Issues"
+						"name" : "OPEN - UAT Issues",
+            "shortName" : "UAT"
 					}
 					]
 				},
 				{
 					"name" : "UBI - Phase II-2",
+          "shortName" : "UBI",
 					"type" : "#EE9A4D",
 					"shape" : "triangle-down",
           "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
-						"name" : "OPEN - Capital Charge - Consolidation"
+						"name" : "OPEN - Capital Charge - Consolidation",
+            "shortName" : "Basel 3"
 					}
 					]
 				}
@@ -151,6 +176,7 @@
             },
 			{
                 "name": "Manjunath Sharanappa",
+                "shortName" : "Manjunath",
 				"type" : "lightgreen",
                 "size": 6714,
 				"shape" : "diamond",
@@ -160,37 +186,43 @@
 				[
 				{
 					"name": "HNB-3",
+          "shortName" : "HNB",
 					"type" : "lightgreen",
 					"shape" : "triangle-down",
           "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
-						"name" : "OPEN - MAP Interface related changes"
+						"name" : "OPEN - MAP Interface related changes",
+            "shortName" : "MAP"
 					}
 					]
 				},
 				{
 					"name" : "UBI - Phase II-3",
+          "shortName" : "UBI",
 					"type" : "lightgreen",
 					"shape" : "triangle-down",
           "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
-						"name" : "OPEN - Capital Charge - Consolidation"
+						"name" : "OPEN - Capital Charge - Consolidation",
+            "shortName" : "Basel 3"
 					}
 					]
 				},
 				{
 					"name" : "UBI - Phase I-3",
+          "shortName" : "UBI",
 					"type" : "lightgreen",
 					"shape" : "triangle-down",
           "milestones" : "HNB UAT",
 					"children" :
 					[
 					{
-						"name" : "ONGOING - UAT Issues"
+						"name" : "ONGOING - UAT Issues",
+            "shortName" : "UAT"
 					}
 					]
 				}
