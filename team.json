@@ -136,7 +136,7 @@
 					},
 					{
 						"name" : "DELIVERRED - Tolerance - Rate Tolerance Changes",
-            "shortName" : "Tolrnce",
+            "shortName" : "Tolrnce"
 					}
 					]
 				},
@@ -244,24 +244,29 @@
             },
 			{
                 "name": "Dhinesh Ramakrishnan",
+                "shortName" : "Dhinesh",
                 "size": 7840
             },
 			{
                 "name": "Lavanya Acharya",
+                "shortName" : "Lavanya",
                 "size": 5914
             }
 			]
         },
 		{
             "name": "Vishal Kashyap",
+            "shortName" : "Vishal",
             "children":
 			[
             {
                 "name": "Harmanpreet Singh",
+                "shortName" : "Harman",
                 "size": 7074
             },
 			{
                 "name": "Ranganathan Madanagopal",
+                "shortName" : "Ranga",
                 "size": 7074
             }
 			]
@@ -274,50 +279,61 @@
 		[
 			{
             "name": "Ravi Shankar Prasad",
+            "shortName" : "Ravi",
             "children":
 			[
             {
                 "name": "Manjula Gunasegaran",
+                "shortName" : "Manjula",
                 "size": 3938
             },
             {
                 "name": "Rashmi Gurung",
+                "shortName" : "Rashmi",
                 "size": 3812
             },
 			{
                 "name": "Kunal Sinha",
+                "shortName" : "Kunal",
                 "size": 6714
             }
 			]
 			},
 			{
             "name": "Sanjesh Kuniyil",
+            "shortName" : "Sanjesh",
             "children":
 			[
             {
                 "name": "Arun Kumar",
+                "shortName" : "Arun",
                 "size": 3534
             },
 			{
                 "name": "Rajaram Manoharan",
+                "shortName" : "Rajaram",
                 "size": 5731
             },
 			{
                 "name": "Manita Sahu",
+                "shortName" : "Manita",
                 "size": 7840
             },
 			{
                 "name": "Rahul Rajusa",
+                "shortName" : "Rahul",
                 "size": 5914
             }
 			]
 			},
 			{
             "name": "Abhinav Jauhari",
+            "shortName" : "Abhinav",
             "children":
 			[
             {
                 "name": "Saurabh Gupta",
+                "shortName" : "Saurabh",
                 "size": 7074
             }
 			]
@@ -326,18 +342,22 @@
     },
 	{
             "name": "Exim Vietnam",
+            "shortName" : "EximV",
             "size": 1041
     },
 	{
             "name": "Federal Bank",
+            "shortName" : "FederalBnk",
             "size": 1041
     },
 	{
             "name": "Ujivan Bank",
+            "shortName" : "UjivanBnk",
             "size": 1041
     },
 	{
             "name": "FT-FC Position correction issue and related changes",
+            "shortName" : "FC-FT Posn",
             "size": 1041
     }
 	]
