@@ -7,6 +7,12 @@
   }
 
   .overlay{
+		position: relative;
+		top: 1%;
+		margin: 0.3%;
+		width: 100%;
+		height: auto;
+		overflow: auto;
       background-color:#EEE;
   }
 
@@ -68,7 +74,7 @@
 			.button{
 			position: relative;
 			margin: 1.5%;
-			left: 5%;
+			left: 30%;
 			width: auto;
 			font-size: 10pt;
 			background-color: #D5DCFC;
@@ -117,6 +123,14 @@
   line-height: 20px;
 }
 
+.disp {
+	position: relative;
+	width: 90%;
+	top: 0.5%;
+	bottom: 1%;
+	width: 100%;
+	overflow: auto;
+}
 </style>
 
 <script src="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/webcomponentsjs/webcomponents-lite.min.js"></script>
@@ -126,6 +140,7 @@
 <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/paper-input/paper-input.html">
+<link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/paper-dialog/paper-dialog.html">
 <!-- <link rel="import" href="csvArrays.html"> -->
 
 
@@ -157,16 +172,24 @@
 <paper-button  id="displayCsv" class="button" on-click="displayCsv()" raised>
 <a href="#" id="displayCsv" onclick="displayCsv()">Display CSV</a>
 </paper-button>
-		<paper-card  class="card"  elevation="0">
+<paper-button  id="displaySunBurst" class="button" on-click="displaySunBurst()" data-dialog="displaySunBurstDiag" raised>
+<a href="#" id="displaySunBurst" onclick="displaySunBurst()">Display SunBurst</a>
+</paper-button>
+<!--		<paper-card  class="card"  elevation="0">
 			You can add "Data" and Drag and Drop to different "Parent Data" accordingly.
 		</paper-card>
-
+-->
 	</div>
 		</section>
 		</paper-card>
 
-
-      <div id="tree-container"></div>
+<!--    <paper-dialog id="displaySunBurstDiag" class="displaySunBurstDiag" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
+        			<div id="sunburst-container" class="disp"></div>
+</paper-dialog>
+    -->
+ 			<div id="sunburst-container" class="disp"></div>
+      <div id="tree-container" class="disp"></div>
+		
 			<div id="csvtable"></div>
 
     <script src="https://d3js.org/d3.v3.min.js"></script>

@@ -8,6 +8,8 @@ var parentArr = [];
 var roleArr = [];
 var milestonesArr = [];
 var jarray =[];
+var displaySunBurstFlag = 0;
+var jsonfileloaded = 0;
 
               var totalNodes = 0;
                var maxLabelLength = 0;
@@ -22,6 +24,32 @@ var jarray =[];
                var duration = 750;
               var viewerWidth =  $(document).width();
                var viewerHeight = $(document).height();
+
+
+               // **************** SunBurst chart related ***********************************
+               var partition = d3.layout.partition()
+                    .sort(null)
+                    .value(function(d){ return 1; });
+
+                    var radius = Math.min(viewerWidth, viewerHeight) / 2;
+
+                    var color = d3.scale.category20c();
+
+                    var sx = d3.scale.linear()
+                        .range([0, 2 * Math.PI]);
+
+                    var sy = d3.scale.sqrt()
+                        .range([0, radius]);
+
+                    var arc = d3.svg.arc()
+        .startAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, sx(d.x))); })
+        .endAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, sx(d.x + d.dx))); })
+        .innerRadius(function(d) { return Math.max(0, sy(d.y)); })
+        .outerRadius(function(d) { return Math.max(0, sy(d.y + d.dy)); });
+
+        var SunBurstNode;
+
+               // **************** SunBurst chart related ***********************************
 
                var tooltipdiv = d3.select("body").append("div")
                .attr("class", "tooltip")//add the tooltip class
@@ -55,7 +83,7 @@ var jarray =[];
                }
 
                // define the zoomListener which calls the zoom function on the "zoom" event constrained within the scaleExtents
-               var zoomListener = d3.behavior.zoom().scaleExtent([0.1, 1.2]).on("zoom", zoom);
+               var zoomListener = d3.behavior.zoom().scaleExtent([0.1, 2]).on("zoom", zoom);
 
 			                  // define the baseSvg, attaching a class for styling and the zoomListener
                var baseSvg = d3.select("#tree-container").append("svg")
@@ -595,12 +623,20 @@ loadJsonData();
 
 function loadJsonData(){
 // load the external data
+    if ( jsonfileloaded == 0 ){
 d3.json("https://ganapathyrajalingam.github.io/ftteamstructure/team.json", function(error, treeData1) {
   treeDatabkup = treeData1;
   console.log( treeDatabkup.teamListDetails[0]);
   console.log(error);
-  makeChart(treeDatabkup.teamListDetails[0]);
+  //makeChart(treeDatabkup.teamListDetails[0]);
+    makeSunBurstChart(treeDatabkup.teamListDetails[0]);  
+    jsonfileloaded = 1;
+  
 });
+    } else {
+        console.log(" json file already loaded so use the root in memory");
+        makeSunBurstChart(treeDatabkup.teamListDetails[0]);      
+    }
 }
 
 
@@ -719,7 +755,8 @@ function makeChart(treeData) {
 
                // Define the root
                root = treeData;
-               root.x0 = viewerHeight / 2;
+               root.x0 = viewerHeight / 3;
+
                root.y0 = 10;
 
                // Layout the tree initially and center on the root node.
@@ -1009,4 +1046,167 @@ function csvToJson(){
       .text(JSON.stringify(table));
 
     //console.log(JSON.stringify(csvRoot));
+}
+
+
+
+function makeSunBurstChart(sunBurstData) {
+
+  console.log(" MakeSunBurstChart called");
+  console.log(sunBurstData);
+  SunBurstNode = sunBurstData;
+  root = sunBurstData;
+  SunBurstNode.x0 = viewerHeight / 3;
+  SunBurstNode.y0 = 10;
+
+/*var zoomListener1 = d3.behavior.zoom().scaleExtent([0.1, 2]).on("zoom", zoom);
+    
+    // define the baseSvg, attaching a class for styling and the zoomListener
+               var baseSvg = d3.select("#sunburst-container").append("svg:svg")
+               .attr("width", viewerWidth)
+               .attr("height", viewerHeight)
+               .attr("class", "overlay")
+               .call(zoomListener1);;
+               
+
+               // Append a group which holds all nodes and which the zoom Listener can act upon.
+               var svgGroup = baseSvg.append("g");
+  */  
+    
+  var g = svgGroup.datum(SunBurstNode).selectAll("g")
+      .data(partition.nodes)
+    .enter().append("g");
+
+    var path = g.append("path")
+      .attr("d", arc)
+      .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
+      .on("click", sunBurstClick)
+      .on("mouseover", function(d) {
+        var xPosition = d3.event.pageX + 5;
+        var yPosition = d3.event.pageY + 5;
+        var yourImagePath = "https://ganapathyrajalingam.github.io/ftteamstructure/Novation.jpg";
+        var string = "<img src= " +  yourImagePath  + " height='100' width='100' />";
+        d3.select("#tooltip")
+          .style("left", xPosition + "px")
+          .style("top", yPosition + "px");
+        d3.select("#tooltip #heading")
+          .text("Name : " + d.name);
+          //.html('<a href= "http://google.com">' + d.name + "</a>" + "<br/");
+        d3.select("#tooltip #milestones")
+          .text("MileStones : " + d.milestones);
+          d3.select("#tooltip #role")
+            .text("Role : " + d.role);
+        d3.select("#tooltip #profile")
+          //.text("£" + d.type );
+          .html ( string)
+          .style("left", (d3.event.pageX + 10) + "px")
+          .style("top", (d3.event.pageY + 50) + "px")
+          .style("font-color", "white");
+        d3.select("#tooltip").classed("hidden", false);
+
+      })
+      .on("mouseout", function(d) {
+        console.log("outcircle");
+        d3.select("#tooltip").classed("hidden", true);
+      })
+      .each(stash);
+
+      var text = g.append("text")
+.attr("transform", function(d) { return "rotate(" + computeTextRotation(d) + ")"; })
+.attr("x", function(d) { return sy(d.y); })
+.attr("dx", "6") // margin
+.attr("dy", ".35em") // vertical-align
+.text(function(d) { console.log("Appending text "); return d.shortName; });
+
+  d3.selectAll("input").on("change", function change() {
+    var value = this.value === "count"
+        ? function() { return 1; }
+        : function(d) { return d.size; };
+
+    path
+        .data(partition.value(value).nodes)
+      .transition()
+        .duration(1000)
+        .attrTween("d", arcTweenData);
+
+        centerNode(SunBurstNode);
+  });
+
+  function sunBurstClick(d) {
+    SunBurstNode = d;
+    // fade out all text elements
+text.transition().attr("opacity", 0);
+
+    path.transition()
+      .duration(1000)
+      .attrTween("d", arcTweenZoom(d))
+      .each("end", function(e, i) {
+          // check if the animated element's data e lies within the visible angle span given in d
+          if (e.x >= d.x && e.x < (d.x + d.dx)) {
+            // get a selection of the associated text element
+            var arcText = d3.select(this.parentNode).select("text");
+            // fade in the text element and recalculate positions
+            arcText.transition().duration(750)
+              .attr("opacity", 1)
+              .attr("transform", function() { return "rotate(" + computeTextRotation(e) + ")" })
+              .attr("x", function(d) { return sy(d.y); });
+          }
+      });
+  }
+
+  d3.select(self.frameElement).style("height", viewerHeight + "px");
+
+// Setup for switching data: stash the old values for transition.
+function stash(d) {
+  d.x0 = d.x;
+  d.dx0 = d.dx;
+}
+
+
+// When switching data: interpolate the arcs in data space.
+}
+
+function arcTweenData(a, i) {
+  var oi = d3.interpolate({x: a.x0, dx: a.dx0}, a);
+  function tween(t) {
+    var b = oi(t);
+    a.x0 = b.x;
+    a.dx0 = b.dx;
+    return arc(b);
+  }
+  if (i == 0) {
+   // If we are on the first arc, adjust the x domain to match the root node
+   // at the current zoom level. (We only need to do this once.)
+    var xd = d3.interpolate(x.domain(), [SunBurstNode.x, SunBurstNode.x + SunBurstNode.dx]);
+    return function(t) {
+      x.domain(xd(t));
+      return tween(t);
+    };
+  } else {
+    return tween;
+  }
+}
+
+// When zooming: interpolate the scales.
+function arcTweenZoom(d) {
+  var xd = d3.interpolate(sx.domain(), [d.x, d.x + d.dx]),
+      yd = d3.interpolate(sy.domain(), [d.y, 1]),
+      yr = d3.interpolate(sy.range(), [d.y ? 20 : 0, radius]);
+  return function(d, i) {
+    return i
+        ? function(t) { return arc(d); }
+        : function(t) { sx.domain(xd(t)); sy.domain(yd(t)).range(yr(t)); return arc(d); };
+  };
+}
+
+function computeTextRotation(d) {
+  return (sx(d.x + d.dx / 2) - Math.PI / 2) / Math.PI * 180;
+}
+
+
+function displaySunBurst(){
+  console.log(" display sun burst chart");
+  displaySunBurstFlag = 1;
+     loadJsonData();
+  //makeSunBurstChart(root);
 }
