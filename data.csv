@@ -1,69 +1,83 @@
-ParentNodes,ChildNodes,Role,MileStones
-null,FT,Team, TBD
-FT,Dev,All Dev,Quarterly Release
-Dev,R11.3.1, Certified Dev, Quarterly
-Dev,R11.3.2, Certified Dev, Quarterly
-Dev,R11.3.3, Certified Dev, Quarterly
-Dev,R11.3.4, Certified Dev, Quarterly
-FT, Dev_Rnd,Architecture changes, Quarterly
-FT,R11.2, All Beta, Patch Mode
-R11.2, R11.2.2, BRAC-ABK-Ujivan-PaymentsBank, Patch Mode
-R11.2, R11.2.3, Sampath, Patch Mode
-R11.2, R11.2.4, HNB, Patch Mode
-FT, R11.1, CS, Support Mode
-R11.1, R11.1.5, CS, Support Mode
-FT,Beta Support,Team, UAT
-Beta Support,Ganapathy Rajalingam,Senior Technical Manager,HNB
-Ganapathy Rajalingam,Vishwanathan K,Product Technical Lead,Axis CR
-Vishwanathan K,HNB-1,,HNB UAT
-HNB-1,DELIVERRED - FIFO - Enablement in SecPos,,
-HNB-1,OPEN - FIFO - Backdated cases handling,,
-HNB-1,OPEN - FIFO - Short Sale cases handling,,
-HNB-1,OPEN - SecPos - UnAmortised prem issue with Trade Date realisation,,
-Vishwanathan K,Sampath-1,,HNB UAT
-Sampath-1,OPEN - SecPos - MTM Price on Month End,,
-Vishwanathan K,AXIS-1,,HNB UAT
-AXIS-1,ONGOING - Dealer Pad - New requirements during UAT,,
-Vishwanathan K,BRAC-1,,HNB UAT
-BRAC-1,OPEN - SecPos - MTM Price on Month End,,
-Ganapathy Rajalingam,Krishna Kishore,Product Technical Lead,HNB
-Krishna Kishore,HNB-2,,HNB UAT
-HNB-2,OPEN - SecPos - Yield Calc when MT date falling on holiday for BOND-EQUIVALENT method,,
-HNB-2,OPEN - Structured Products License Changes,,
-HNB-2,DELIVERRED - Tolerance - Rate Tolerance Changes,,
-Krishna Kishore,UBI - Phase I-2,,HNB UAT
-UBI - Phase I-2,OPEN - Capital Charge - Pending Items post Testing,,
-UBI - Phase I-2,OPEN - UAT Issues,,
-Krishna Kishore,UBI - Phase II-2,,HNB UAT
-UBI - Phase II-2,OPEN - Capital Charge - Consolidation,,
-Ganapathy Rajalingam,Manjunath Sharanappa,Product Technical Lead,HNB
-Manjunath Sharanappa,HNB-3,,HNB UAT
-HNB-3,OPEN - MAP Interface related changes,,
-Manjunath Sharanappa,UBI - Phase II-3,,HNB UAT
-UBI - Phase II-3,OPEN - Capital Charge - Consolidation,,
-Manjunath Sharanappa,UBI - Phase I-3,,HNB UAT
-UBI - Phase I-3,ONGOING - UAT Issues,,
-Beta Support,Swapnil Kadam,,
-Swapnil Kadam,Nikhil Bhat,,
-Swapnil Kadam,Chetan Naik,,
-Swapnil Kadam,Dhinesh Ramakrishnan,,
-Swapnil Kadam,Lavanya Acharya,,
-Beta Support,Vishal Kashyap,,
-Vishal Kashyap,Harmanpreet Singh,,
-Vishal Kashyap,Ranganathan Madanagopal,,
-FT,Development,,
-Development,Ravi Shankar Prasad,,
-Ravi Shankar Prasad,Manjula Gunasegaran,,
-Ravi Shankar Prasad,Rashmi Gurung,,
-Ravi Shankar Prasad,Kunal Sinha,,
-Development,Sanjesh Kuniyil,,
-Sanjesh Kuniyil,Arun Kumar,,
-Sanjesh Kuniyil,Rajaram Manoharan,,
-Sanjesh Kuniyil,Manita Sahu,,
-Sanjesh Kuniyil,Rahul Rajusa,,
-Development,Abhinav Jauhari,,
-Abhinav Jauhari,Saurabh Gupta,,
-FT,Exim Vietnam,,
-FT,Federal Bank,,
-FT,Ujivan Bank,,
-FT,FT-FC Position correction issue and related changes,,
+ParentNodes,ChildNodes,ShortName,Role,MileStones,Display,Comments
+null,FT,FT,Team, TBD,,
+FT,FT Commitments,,,,,
+FT Commitments,SriLanka,,,,,
+SriLanka,HNB,,,,,
+FT Commitments,Europe,,,,,
+Europe,CS - R11.1.5.29,,,,,
+FT Commitments,Middle East,,,,,
+Middle East,ABK Kuwait,,,,,
+FT Commitments,India,,,,,
+India,UBI - Phase 1 & 2,,,,,
+India,Federal Bank,,,,,
+India,Ujivan Bank,,,,,
+FT Commitments,Africa,,,,,
+FT Commitments,APAC,,,,,
+APAC,Exim Vietnam,,,,,
+FT,Release Management,,,,,
+Release Management,DevStream,,,,,
+DevStream,R11.3.0 ( 1st Qtr ),,,,,
+DevStream,R11.3.1 ( 2nd Qtr ),,,,,
+DevStream,R11.3.2 ( 3rd Qtr ),,,,,
+DevStream,R11.1,,,,,
+R11.1,R11.1.5,,,,,
+DevStream,R11.2,,,,,
+R11.2,R11.2.1,,,,,
+R11.2,R11.2.2,,,,,
+R11.2`,R11.2.3,,,,,
+R11.2,R11.2.4,,,,,
+DevStream,R10.13,,,,,
+FT,Team Management,,,,,
+Team Management,Beta Support,Beta Supp,Team, UAT,,
+Beta Support,Ganapathy Rajalingam,Gana,Senior Technical Manager,HNB,,
+Ganapathy Rajalingam,Vishwanathan K,KV,Product Technical Lead,Axis CR,,
+Vishwanathan K,HNB-1,HNB,,HNB UAT,,
+HNB-1,DELIVERRED - FIFO - Enablement in SecPos,SecPos - FIFO,,,,
+HNB-1,OPEN - FIFO - Backdated cases handling,SecPos - BackDated,,,,
+HNB-1,OPEN - FIFO - Short Sale cases handling,SecPos - Short Sale,,,,
+HNB-1,OPEN - SecPos - UnAmortised prem issue with Trade Date realisation,SecPos - Prem,,,,
+Vishwanathan K,Sampath-1,Sampath,,HNB UAT,,
+Sampath-1,OPEN - SecPos - MTM Price on Month End,SecPos - MTM Price,,,,
+Vishwanathan K,AXIS-1,AXIS,,HNB UAT,,
+AXIS-1,ONGOING - Dealer Pad - New requirements during UAT,Dealer Pad,,,,
+Vishwanathan K,BRAC-1,BRAC,,HNB UAT,,
+BRAC-1,OPEN - SecPos - MTM Price on Month End,SecPos - Month End,,,,
+Ganapathy Rajalingam,Krishna Kishore,Kishore,Product Technical Lead,HNB,,
+Krishna Kishore,HNB-2,HNB,,HNB UAT,,
+HNB-2,OPEN - SecPos - Yield Calc when MT date falling on holiday for BOND-EQUIVALENT method,SecPos - Yield,,,,
+HNB-2,OPEN - Structured Products License Changes,Struct Prod,,,,
+HNB-2,DELIVERRED - Tolerance - Rate Tolerance Changes,Tolerance,,,,
+HNB-2,12 UAT Issues,UAT Issues,,,,
+Krishna Kishore,UBI - Phase I-2,UBI-Phase 1,,HNB UAT,,
+UBI - Phase I-2,OPEN - Capital Charge - Pending Items post Testing,,,,,
+UBI - Phase I-2,OPEN - UAT Issues,,,,,
+Krishna Kishore,UBI - Phase II-2,,,HNB UAT,,
+UBI - Phase II-2,OPEN - Capital Charge - Consolidation,,,,,
+Ganapathy Rajalingam,Manjunath Sharanappa,,Product Technical Lead,HNB,,
+Manjunath Sharanappa,HNB-3,,,HNB UAT,,
+HNB-3,OPEN - MAP Interface related changes,,,,,
+HNB-3,Few UAT Issues,,,,,
+Manjunath Sharanappa,UBI - Phase II-3,,,HNB UAT,,
+UBI - Phase II-3,OPEN - Capital Charge - Consolidation,,,,,
+Manjunath Sharanappa,UBI - Phase I-3,,,HNB UAT,,
+UBI - Phase I-3,ONGOING - UAT Issues,,,,,
+Beta Support,Swapnil Kadam,,,,,
+Swapnil Kadam,Brindha Rajendran,,,,,
+Swapnil Kadam,Chetan Naik,,,,,
+Swapnil Kadam,Dhinesh Ramakrishnan,,,,,
+Swapnil Kadam,Lavanya Acharya,,,,,
+Beta Support,Vishal Kashyap,,,,,
+Vishal Kashyap,Harmanpreet Singh,,,,,
+Vishal Kashyap,Ranganathan Madanagopal,,,,,
+Team Management,Development,,,,,
+Development,Ravi Shankar Prasad,,,,,
+Ravi Shankar Prasad,Manjula Gunasegaran,,,,,
+Ravi Shankar Prasad,Rashmi Gurung,,,,,
+Ravi Shankar Prasad,Kunal Sinha,,,,,
+Development,Sanjesh Kuniyil,,,,,
+Sanjesh Kuniyil,Arun Kumar,,,,,
+Sanjesh Kuniyil,Rajaram Manoharan,,,,,
+Sanjesh Kuniyil,Manita Sahu,,,,,
+Sanjesh Kuniyil,Rahul Rajusa,,,,,
+Development,Abhinav Jauhari,,,,,
+Abhinav Jauhari,Saurabh Gupta,,,,,
