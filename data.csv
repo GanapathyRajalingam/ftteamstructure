@@ -1,5 +1,17 @@
 ParentNodes,ChildNodes,Role,MileStones
 null,FT,Team, TBD
+FT,Dev,All Dev,Quarterly Release
+Dev,R11.3.1, Certified Dev, Quarterly
+Dev,R11.3.2, Certified Dev, Quarterly
+Dev,R11.3.3, Certified Dev, Quarterly
+Dev,R11.3.4, Certified Dev, Quarterly
+FT, Dev_Rnd,Architecture changes, Quarterly
+FT,R11.2, All Beta, Patch Mode
+R11.2, R11.2.2, BRAC-ABK-Ujivan-PaymentsBank, Patch Mode
+R11.2, R11.2.3, Sampath, Patch Mode
+R11.2, R11.2.4, HNB, Patch Mode
+FT, R11.1, CS, Support Mode
+R11.1, R11.1.5, CS, Support Mode
 FT,Beta Support,Team, UAT
 Beta Support,Ganapathy Rajalingam,Senior Technical Manager,HNB
 Ganapathy Rajalingam,Vishwanathan K,Product Technical Lead,Axis CR
