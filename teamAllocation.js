@@ -628,8 +628,8 @@ d3.json("https://ganapathyrajalingam.github.io/ftteamstructure/team.json", funct
   treeDatabkup = treeData1;
   console.log( treeDatabkup.teamListDetails[0]);
   console.log(error);
-  //makeChart(treeDatabkup.teamListDetails[0]);
-    makeSunBurstChart(treeDatabkup.teamListDetails[0]);  
+  makeChart(treeDatabkup.teamListDetails[0]);
+  //  makeSunBurstChart(treeDatabkup.teamListDetails[0]);  
     jsonfileloaded = 1;
   
 });
