@@ -10,7 +10,7 @@
   "value" : "1",
     "children":
 	[
-		{
+	{
 			"name": "DevStream",
 			"ShortName": "Dev",
 			"type" : "lightsteelblue",
@@ -109,7 +109,7 @@
 					]
 				}
 			]
-		},
+	},
 	{
         "name": "Beta Support",
         "shortName" : "BetaSupp",
