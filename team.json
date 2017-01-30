@@ -19,12 +19,32 @@
     			"role" : "Dev Release",
 			"children":
 			[
+				
+				{
+					"name": "R10.13",
+					"ShortName": "R10.13",
+					"type" : "lightsteelblue",
+					"shape" : "square",
+    					"milestones" : "M&S",
+    					"role" : "R10.13 Release",
+					"children":
+					[
+						{
+							"name": "R10.13.1",
+							"ShortName": "R10.13.1",
+							"type" : "lightsteelblue",
+							"shape" : "square",
+    							"milestones" : "M&S",
+    							"role" : "R10.13.1 Release"					
+						}
+					]
+				},
 				{
 					"name": "R11.1",
 					"ShortName": "R11.1",
 					"type" : "lightsteelblue",
 					"shape" : "square",
-    					"milestones" : " UBI, Exim Vietnam",
+    					"milestones" : " CS",
     					"role" : "R11.1 Release",
 					"children":
 					[
@@ -109,6 +129,14 @@
 					]
 				}
 			]
+	},
+	{
+		"name": "Dev_NextMajorRel",
+		"ShortName": "R11.4",
+		"type" : "lightsteelblue",
+		"shape" : "square",
+    		"milestones" : "Next Major Release",
+    		"role" : "Dev_NextMajorRel"
 	},
 	{
         "name": "Beta Support",
